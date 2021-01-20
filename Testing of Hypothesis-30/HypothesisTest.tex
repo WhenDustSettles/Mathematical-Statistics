@@ -1,0 +1,117 @@
+%        File: HypothesisTest.tex
+%     Created: Tue May 12 11:00 AM 2020 I
+% Last Change: Tue May 12 11:00 AM 2020 I
+%
+\documentclass[a4paper]{article}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\title{Testing of Hypothesis}
+\author{Animesh Renanse}
+\date{May 12, 2020}
+
+\begin{document}
+\maketitle
+\newpage
+
+\section{Testing of Hypothesis}
+So far we have discussed how we can gather a point or interval estimate of unknown parameters.
+
+Now we will look how we can figure out whether a given statement is true or not.
+
+\section{Examples}
+\subsection{Clinical Trial}
+\begin{itemize}
+	\item{Pharmaceutical companies use Hypothesis test to see whether a particular drug is efficient or not.}
+	\item{To do so, they administer two sets of patients, one with the drug (test group) and other with a placebo (control group).}
+	\item{Assume that the drug is a cough syrup}
+	\item{Let $\mu_1$ be the expected number of expectorations per hour after a patient has used a placebo.}
+	\item{Let $\mu_2$ be the expected number of expectorations after the patient has used the cough syrup.}
+	\item{We want to know if $\mu_2 < \mu_1$.}
+	\item{Note that here two expectations are compared with NO reference number}
+	\item{Let $X_1, X_2, .. X_{n_1} $ be the $n_1$ i.i.d. Random Variables with distribution $P(\mu_1)$.}
+	\item{Let $Y_1, Y_2, \cdots Y_{n_2}$ be the $n_2$ i.i.d. Random Variables with distribution $P(\mu_2)$. }
+	\item{We want to test whether $\mu_2 < \mu_1$ or  $ \mu_2 = \mu_1$.}
+	\item{Intuitive idea might be to compare sample means $\overline{X}$ and $\overline{ Y}$.}
+
+\end{itemize}
+\subsection{Coin Toss}
+\begin{itemize}
+	\item{A coin is tossed 80 times and Heads is observed 55 times. Can we conclude that the coin is significantly fair?}
+	\item{Here $n = 80$ and $ X_1, X2, \cdots X_n \sim $ \textit{Bernoulli($p$)} .}
+	\item{We want to test if $p\neq 0.5$ or $p = 0.5$}
+	\item{Note that the sample mean here is $\overline{X} = \frac{55}{80} = 0.6875$}
+	\item{If $X_i$ follows Bernoulli distribution then we can say that 
+		\[
+		T_n = \frac{\sqrt{n}\left( \overline{X_n}- p \right) } {\sqrt{p\left( 1-p \right) } } \approx	N(0,1) 
+		.\] }
+	\item{After putting in the values, we get $T_n$ to be equal to 3.3541}
+	\item{It then seems quite reasonable to conclude that hypothesis that $p = 0.5$ isn't true as a value of 3.3.541 seems quite unlikely for a $N(0,1)$ distribution.}
+	\item{Note that we are saying that 3.3541 is \textit{quite unlikely} for a $N(0,1)$ distribution. But how can we formalize that?}
+	\item{We can write that \textit{we are rejecting $p = 0.5$ if the observation belong to the set}
+		\[
+			\left\{ x :  \mid T_n \mid > C \right\}. 
+	.\] But what value of $C$ should we choose?}
+
+\end{itemize}
+
+
+
+
+
+\section{Definitions}
+\textbf{Def:} A hypothesis is a statement about the unknown parameters.
+\newline\newline
+\textbf{Def:} Suppose one wants to choose between two reasonable hypotheses $H_0 : \theta \in \Theta_0$ and $H_1 : \theta \in \Theta_1$, where $\Theta_0 \subset \Theta$, $\Theta_1 \subset \Theta$ and $\Theta_0\cup \Theta_1 = \Phi$. We call $H_1$ the alternative hypothesis and $H_0$ the null hypothesis.
+\newline\newline
+\textbf{Remark:} Note that the role of these two hypothesis $H_1$ and $H_0$ are asymmetric, therefore one needs to be careful about them.
+\newline\newline
+\textbf{Approach:} We will consider a reasonable statistic and will make the choice based on it.
+\newline\newline
+\textbf{Def:} Let $R$ be a subset of  $\mathbb{R}^{n}$ such that we reject  $ H_0$ if $x \in R$. Then $R$ is called \textbf{Rejection Region } or \textbf{Critical Region} whereas $R^{C}$ is called \textbf{Acceptance Region}.
+\newline
+\textit{Note that by size of Critical Region R, one means the probability of R under Null Hypothesis $H_0$, i.e. \[
+		\text{Size of Critical Region} = P\left( R \right) \text{under $H_0$}
+.\] }
+\newline
+\textbf{Def:} The error committed by \textit{Rejecting $H_0$ when it is actually True}	is called \textbf{Type-I Error} and the error  committed by \textit{Accepting $H_0$ when it is actually False} is called \textbf{Type-II Error}.
+ 
+\textit{One can say that Type-I Error is False Negative and Type-II Error is False Positive.}
+\newline\newline
+\textbf{Ultimate AIM:} To choose $R$ such that the probabilities of errors of the above two types is \textbf{as small as possible}.
+\newline
+\subsection{Example Use}
+\textbf{Question:} Let $X_1,X_2, \cdots X_9 \sim^{i.i.d.} N(\theta,1).$ Suppose that we want to test $H_0: \theta = 5.5$ against $H_1: \theta = 7.5$. Let us consider two critical regions $R_1 = \left\{ x \in \mathbb{R}^{9}:\overline{x}>6 \right\} $ and $R_2 = \left\{ x \in \mathbb{R}^{9}: \overline{x} > 7 \right\} $. 
+\newline\newline
+Let us compute the probability of errors  for region $R_1$.
+
+\[
+	P\left( Type-I Error \right) = P_{\theta = 5.5} (\overline{X} > 6) = 1 - P(\overline{X} < 6) 
+.\] 
+
+Since $ \overline{X} $ follows a $N(\theta,\frac{1}{9})$, therefore $P(\overline{X}<6) = P(\overline{X} - \theta < 6 - \theta) = P(\frac{\overline{X}-6}{\frac{1}{\sqrt{9} }} < \frac{6-\theta}{\frac{1}{\sqrt{9}} }) = P(3 \left( \overline{X} - 5.5 \right) < 3 \left( 6 - 5.5 \right) ) = \Phi(3\left( 6- 5.5 \right) ) = 0.93319$
+\newline\newline
+Therefore $P(Type-I Error) = 1 - 0.93319 = 0.06681$
+\newline\newline
+Similarly, the probability of Type-II error will be:
+\[
+	P(Type-II Error) = P_{\theta = 7.5} (\overline{X} \le  6) = \Phi(3\left( 6 - 7.5 \right) ) \approx  0
+.\]
+
+Similarly, we can compute for $R_2$.
+
+\subsection{Remarks}
+
+\begin{itemize}
+	\item {If we take $R = \phi$, then  $P(Type-I) = 0$ and  $P(Type-II) = 1$}
+	\item{Similarly, if we take $R = \mathbb{R}^{n}$, then $P(Type-I) = 1$ and $P(Type-II) = 0$}
+	\item{Notice that if we try to reduce the probability of one type of error, then the probability of other type of error increases}
+	\item{In this type of optimization problem, we can use some combination of two functions and then try to minimize the combination.}
+	\item{However, for \textit{Hypothesis Testing} the \textbf{APPROACH} is as follows:\newline\newline \textit{\textbf{Put a bound on the probability of Type-I Error and try to minimize the probability of Type-II Error}}.}
+\end{itemize}
+
+	
+\end{document}
+
+

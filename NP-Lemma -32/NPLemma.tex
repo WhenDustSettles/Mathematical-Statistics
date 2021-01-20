@@ -1,0 +1,165 @@
+\documentclass{article}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Mathematical Statistics}
+\lhead{Neyman-Pearson Lemma}
+\rfoot{Page \thepage}
+
+
+\title{Neyman-Pearson Lemma}
+\author{Animesh Renanse}
+\date{May 14, 2020}
+
+\begin{document}
+\maketitle
+\newpage
+
+
+\section{Most Powerful Test}
+\textbf{Def:} Consider the \textbf{collection $C$ of all level $\alpha$ tests}  for $H_0 : \theta \in \Theta_0$ against $H_1 : \theta \in \Theta_1$. A test belonging to $C$ with power function $\beta\left( . \right) $ is called \textbf{uniformly most powerful (UMP) level $\alpha$ test} if :
+\[
+	\beta\left( \theta \right) \ge \beta^{*}\left( \theta \right) \text{ for all $\theta \in \Theta_1$}
+.\] 
+\textbf{where $\beta^{*}\left( . \right) $ is the power function of any other test in $C$}. \textit{Note the $\theta \in \Theta_1$ in above equation}
+\newline\newline
+If the alternative hypothesis is simple (that means that $\Theta_1$ is singleton), the test is called \textbf{most powerful (MP) level $\alpha$ test.}   
+\newline\newline
+\textbf{Remark: }Note what we are doing here is that, \textit{across all $\theta \in \Theta_1$, we are finding that test amongst all tests in $C$ with level $\alpha$ which returns maximum value of it's own test function $\beta\left( . \right) $.} 
+In this way, we maximize the $\beta\left( . \right) $ for all parameters from $\Theta_1$, which is the parameter space of Alternative Hypothesis. Therefore, in reality, we are maximizing the value of $1 - P\left( \text{Type-II Error} \right) $, in-turn, \textbf{minimizing $P\left( \text{Type-II Error} \right) $}.
+\newline
+At the same time, we are \textbf{ keeping a bound on probability of Type-I Error} because level being $\alpha$, i.e. $P\left(\text{Type-I Error} \right) \le \alpha$
+\newline\newline
+\textbf{Remark: }When $H_1 : \theta = \theta_1$ for some fixed $\theta_1$, that is, $H_1$ is simple, it boils down to checking whether $\beta\left( \theta_1 \right) \ge \beta^{*}\left( \theta_1 \right) $ amongst all tests in $C$. That is the reason why word \textit{uniformly} is removed from the definition when $H_1$ is simple. 
+
+\section{Neyman-Pearson Lemma}
+\textbf{Theorem: }Let $\theta_0 \neq  \theta_1$ be two fixed numbers in $\Theta$. The  \textbf{MP level $\alpha$ test for $H_0:\theta = \theta_0$ against $H_1:\theta = \theta_1$} is given by,
+\[
+		\varphi\left( \mathbf{x} \right)  = \begin{cases}
+			1 & \text{ if } L\left( \theta_1 \right)  > kL\left( \theta_0 \right) \\
+			\gamma & \text{ if } L\left( \theta_1 \right) = kL\left( \theta_0 \right) \\
+			0 & \text{ if } L\left( \theta_1 \right) < kL\left( \theta_0 \right) 
+		\end{cases}
+	,\] 
+	where $k \ge 0$ and $\gamma \in \left[ 0,1 \right] $ such that $\beta\left( \theta_0 \right) = \mathbb{E}_{\theta_0} \left( \varphi \left( \mathbf{X} \right)  \right) = \alpha $.\textbf{ Here $L\left( . \right) $ is the Likelihood Function.}
+\newline\newline
+\textbf{Note:} This theorem says that if $\Theta_0 \text{ and } \Theta_1$ are singleton sets, then the above $\varphi\left( \mathbf{x} \right) $ is the most powerful test \textit{automatically}. Since being \textit{most powerful}
+means that the value of $\beta\left( . \right) $ is greater than or equal to the value of all other tests, therefore
+it has been set to the maximum possible value of $\beta\left( . \right) $ under the constraints of the definition, which is $\alpha$.
+\newline\newline
+\textbf{Remark:} In the theorem, both Null and Alternative Hypotheses are simple.
+\newline\newline
+\textbf{Remark:} $L \left( \theta_1 \right) > kL\left( \theta_0 \right) $ can be expresed as $\frac{L\left( \theta_1 \right) }{L\left( \theta_0 \right) } > k$ \textbf{if $L\left( \theta_0 \right) > 0$.} Hence the \textbf{MP test rejects the null hypothesis for large values of $\frac{L\left( \theta_1 \right) }{L\left( \theta_0 \right) }$}.
+
+
+
+\section{Examples}
+\textbf{Question: } Let $X_1,X_2,\dots,X_{n} \overset{i.i.d.}{\sim} N\left( \mu, \sigma^{2} \right) $, where $\sigma$ is known. let $\mu_0<\mu_1$ be two real numbers. We are interested to test $H_0 : \mu = \mu_0$ against $H_1: \mu = \mu_1$.
+\newline\newline
+First of all, 
+\[
+	\frac{L\left( \mu_1 \right) }{L\left( \mu_0 \right) } = \exp\left[ \frac{1}{2\sigma^{2}}\left\{ 2n\overline{x}\left( \mu_1 - \mu_0 \right)  + n\left( \mu_0^2 - \mu_1^2 \right)  \right\}  \right] 	
+.\]
+
+Now, if $\frac{L\left( \mu_1 \right) }{L\left( \mu_0 \right) } > k \iff \overline{x} > k_1$ for some constant $k_1$, as $\mu_1 > \mu_0$.
+\newline\newline
+Hence the MP level $\alpha$ test is given by:
+\[
+	\varphi\left( \mathbf{x} \right) = \begin{cases}
+		1 & \text{ if } \overline{x} > k_1\\
+		\gamma & \text{ if } \overline{x} = k_1\\
+		0 & \text{ if } \overline{x} < k_1
+	\end{cases}
+,\] 
+where $k_1$ and $\gamma $ are such that,
+\[
+	\mathbb{E}_{\mu_0} \left( \varphi\left( \mathbf{x} \right)  \right) = \alpha
+.\] 
+i.e.,
+\begin{equation*}
+	\begin{split}
+		\mathbb{E}_{\mu_0}\left( \varphi \left( \mathbf{X} \right)  \right) &=  P_{\mu_0}\left[ \overline{X} > k_1\right] = \alpha\\
+		\implies k_1 &=  \mu_0 + \frac{\sigma}{\sqrt{n} } z_{\alpha} 
+	\end{split}
+\end{equation*}
+Now note that $P_{\mu_0}\left( \overline{X} = k_1 \right)  = 0$ as $\overline{X}$ is a (continuous) Normal Distribution. It implies that $\gamma = 0$, \textbf{which makes it a non-randomized test. }
+\newline\newline
+Hence the MP level $\alpha$ test is given by:
+\[
+	\varphi\left( \mathbf{x} \right) = \begin{cases}
+		1 & \text{ if } \overline{x} > \mu_0 + \frac{\sigma}{\sqrt{n} }z_{\alpha}\\
+		0 & \text{ otherwise }
+	\end{cases}
+\] 
+\textbf{Remark:} Note the way of solving the problem:
+\begin{itemize}
+	\item {We try to simplify $\frac{L\left( \mu_1 \right) }{L\left( \mu_0 \right) } > k$} so that we can \textit{condition on a \textbf{statistic whose distribution under $H_0$ is known or can be found}.} 
+	\item {If this statistic is a continuous random variable , \textbf{then we will have a non-randomized test}. Otherwise, we may need to consider $\gamma \in  \left( 0,1 \right) $, making the test a randomized one.}
+\end{itemize}
+\textbf{Question:} Let $X_1, X_2, .. , X_{n} \overset{i.i.d.}{\sim} Bernoulli\left( \theta \right)$. Let $0 < \theta_1 < \theta_0 < 1 $ be two real numbers. We are interested to test $H_0 : \theta = \theta_0$ against $H_1 : \theta = \theta_1$. 
+\newline\newline
+First of all,
+\[
+	\frac{L\left( \theta_1 \right) }{L\left( \theta_0 \right) } = \left( \frac{\theta_1}{\theta_0} \times \frac{1- \theta_0}{1- \theta_1} \right)^{t} > k \iff t< k_1
+\]
+where $t \sim T = \sum_{i = 1}^{n} X_{i} \sim Bin\left( n, \theta_0 \right)  $ and for some constant $k_1$ as $\theta_0 > \theta_1$. Hence the MP level $\alpha$ test is:
+\[
+	\varphi\left( \mathbf{x} \right)  = \begin{cases}
+		1 \text{ if } t < k_1\\
+		\gamma \text{ if } t = k_1\\
+		0 \text{ if } t > k_1
+	\end{cases}
+,\]
+where $\mathbb{E}_{\theta_0} \left( \varphi \left( \mathbf{x} \right)  \right)  = \alpha = P_{\theta_0}\left( T < k_1 \right) + \gamma P_{\theta_0} \left( T = k_1 \right)   $
+\newline\newline
+Now, take $\hat{K} \in  \left\{ 1,2,\dots,n \right\} $ such that 
+\[
+	P_{\theta_0}\left( T < \hat{K} \right) \le \alpha < P_{\theta_0}\left( T\le \hat{K} \right) 
+.\]
+so that if we take $k_1 = \hat{K}$, we get::
+\[
+	\gamma = \frac{\alpha - P_{\theta_0}\left( T < \hat{K} \right)  }{P_{\theta_0}\left( T = \hat{K} \right) }
+.\]
+Therefore, the MP level $\alpha$ test is given by:
+\[
+	\varphi \left( \mathbf{x} \right)  = \begin{cases}
+		1 & \text{ if } t<\hat{K}\\
+		\frac{\alpha - P_{\theta_0}\left( T < \hat{K} \right)  }{P_{\theta_0}\left( T = \hat{K} \right)} & \text{ if } t = \hat{K}\\
+			0 & \text{ if } t > \hat{K}
+	\end{cases}
+.\] 
+\textbf{Question:} Let $X_1,X_2,\dots,X_{n} \overset{i.i.d.}{\sim} N\left( \mu,\sigma_2\right) $, where $\sigma$ is known. Let $\mu_0$ be a real number. We are interested to test $H_0 : \mu = \mu_0$ against $H_1 : \mu \neq \mu_0 $.
+\newline\newline
+We know that the MP level $\alpha$ test for testing $H_0:\mu=\mu_0$ against $H_1:\mu = m_1\left( >\mu_0 \right) $ is given by:
+\[
+	\varphi_1\left( \mathbf{x} \right) = \begin{cases}
+		1 & \text{ if } \frac{\sqrt{n} }{\sigma} \left( \overline{x} - \mu_0 \right) > z_{\alpha}\\
+		0 & \text{ otherwise}
+	\end{cases}
+.\]
+In the similar way, the MP level $\alpha$ test for testing $H_0 : \mu = \mu_0$ against $H_1 : \mu = \mu_1\left( <\mu_0 \right) $ is given by:
+\[
+\varphi_2\left( \mathbf{x} \right)  = \begin{cases}
+	1& \text{  if } \frac{\sqrt{n} }{\sigma}\left( \overline{x} - \sigma_0 \right) < -z_{\alpha}\\
+	0 & \text{ otherwise }
+\end{cases}
+.\]
+Now, notice that:
+\begin{itemize}
+	\item {For $\mu_1> \mu_0$, the $\varphi_1\left( . \right) $ has the maximum power among level $\alpha$ tests.}
+	\item{For $\mu_1 < \mu_0$, the $\varphi_2\left( . \right) $ has the maximum power among level $\alpha$ tests.}
+	\item{As these two tests are different, therefore UMP level $\alpha$ test for $H_0:\mu = \mu_0$ against $H_1:\mu\neq \mu_0$ does not exist for all $\alpha \in  \left( 0,1 \right) $}
+\end{itemize}
+\textbf{Remark:} There are cases when UMP test does not exist.
+\newline\newline
+\textbf{Remark:} However, the problem of hypothesis testing $H_0:\mu = \mu_0$ against $H_1:\mu\neq \mu_0$ is practically quite meaningful. Hence we need some alternatives. One such alternative called \textbf{Likelihood Ratio Test} which depends on the concept of Maximum Likelihood Estimator (MLE) is discussed next.
+\end{document}

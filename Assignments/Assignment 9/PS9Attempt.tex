@@ -1,0 +1,499 @@
+%        File: PS9Attempt.tex
+%     Created: Wed May 27 06:00 PM 2020 I
+% Last Change: Wed May 27 06:00 PM 2020 I
+%
+\documentclass[a4paper]{article}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+
+
+\newcommand*{\Perm}[2]{{}^{#1}\!P_{#2}}%
+\newcommand*{\Comb}[2]{{}^{#1}C_{#2}}%
+
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{MA212M-Mathematical Statistics}
+\lhead{Assignment 9}
+\rfoot{Page \thepage}
+
+\title{Assignment 9 - MA212M}
+\author{Animesh Renanse}
+\date{\today}
+
+\begin{document}
+\maketitle
+\newpage
+
+\section{Answer 1}
+Given:
+\begin{itemize}
+	\item {$X_1,X_2,\cdots,X_n \sim U\left( \theta_1,\theta_2 \right) $}
+	\item{$-\infty<\theta_1<\theta_2<\infty$}
+\end{itemize}
+To find: Moment Estimator of $\left( \theta_1,\theta_2 \right) $ 
+\newline\newline
+The algorithm to find Moment Estimator is as follows:
+\begin{enumerate}
+	\item {Calculate:
+		\begin{equation*}
+			\begin{split}
+				\mu_1^{\prime} &= g_1\left( \theta_1,\cdots,\theta_k \right) \\
+				\mu_2^{\prime} &= g_2\left( \theta_1,\cdots,\theta_k \right) \\
+				\vdots &= \vdots\\
+				\mu_k^{\prime} &= g_n\left( \theta_1,\cdots,\theta_k \right) \\
+			\end{split}
+		\end{equation*}
+where $\theta = \left( \theta_1,\cdots,\theta_k \right) $ are the parameters of the distribution from which $X$ is drawn.
+		}
+	\item{After calculating $\mu_j^{\prime}\; \forall i \in  \left\{ 1,\cdots,k \right\}$, calculate the inverse functions, i.e.:
+		\begin{equation*}
+			\begin{split}
+				\theta_1 &=  h_1\left( \mu_1^{\prime},\cdots, \mu_k^{\prime} \right) \\
+				\theta_2 &= h_2\left( \mu_1^{\prime},\cdots,\mu_k^{\prime}\right) \\
+				\vdots &= \vdots\\
+				\theta_k &= h_k\left( \mu_1^{\prime},\cdots,\mu_k^{\prime} \right) 
+			\end{split}
+		\end{equation*}
+		} 
+	\item{Now just approximate $\mu_j^{\prime}$ by the Monte Carlo Estimate as following:
+		\begin{equation*}
+			\begin{split}
+				\alpha_j = \frac{1}{n} \sum_{i=1}^{n} X_i^{j}
+			\end{split}
+		\end{equation*}
+		Therefore the Methods of Moments Estimator for $\theta_i$ becomes:
+		\begin{equation*}
+			\begin{split}
+				\hat{\theta_i} = h_i\left( \alpha_1,\cdots,\alpha_k \right) 
+			\end{split}
+		\end{equation*}
+		}
+\end{enumerate}
+Now to find the Moment Estimator for $\left( \theta_1,\theta_2 \right) $:
+\begin{equation*}
+	\begin{split}
+	\mathbb{E}\left[ X^{1} \right] =  \mu_1^{\prime} &= \frac{1}{2} \left( \theta_1+\theta_2 \right) \\
+	\mathbb{E}\left[ X^{2} \right] = \mu_2^{\prime} &= \int_{-\infty}^{\infty} x^{2} f_X\left( x \right)  dx\\
+	&= \int_{\theta_1}^{\theta_2} \frac{1}{\theta_2-\theta_1} x^2dx\\
+	&= \frac{1}{\theta_2-\theta_1} \left[ \frac{x^3}{3} \right]_{\theta_1}^{\theta_2}\\
+	&= \frac{1}{3} \left( \theta_1^2 + \theta_2^2 + \theta_1\theta_2 \right) 
+	\end{split}
+\end{equation*}
+Now, to find the inverse functions $h_1 $ and $h_2$:
+
+Manipulating the equations of $\mu_1^{\prime}$ and $\mu_2^{\prime}$ to get:
+\begin{equation*}
+	\begin{split}
+		4\mu_1^{2} - 3\mu_2 &= \theta_1\theta_2\\
+		&= \theta_1.\left( 2\mu_1 - \theta_1 \right)\\
+		&\implies \theta_1^2 - 2\mu_1\theta_1 + 4\mu_1^2 - 3\mu_2 = 0\\
+		&\implies \theta_1 = \frac{2\mu_1 \pm \sqrt{4\mu_1^2 - 4.\left( 4\mu_1^2 - 3\mu_2 \right) } }{2}
+	\end{split}
+\end{equation*}
+Let $m = \sqrt{4\mu_1^2 - 4.\left( 4\mu_1^2 - 3\mu_2 \right)}$.
+\newline\newline
+Therefore,
+\begin{equation*}
+	\begin{split}
+		\theta_1 &= \mu_1 \pm \frac{m}{2}\\
+		\theta_2 &= \mu_1 \mp \frac{m}{2}
+	\end{split}
+\end{equation*}
+Now, to calculate $\alpha_1$ and $\alpha_2$:
+\begin{equation*}
+	\begin{split}
+		\alpha_1 &= \frac{1}{n}\sum_{i=1}^{n} x_i\\
+		\alpha_2 &=  \frac{1}{n}\sum_{i=1}^{n} x_i^2
+	\end{split}
+\end{equation*}
+Therefore, the Method of Moments Estimator for $\left( \theta_1,\theta_2 \right)$ is (Note that $\theta_2 > \theta_1$):
+\begin{equation*}
+	\begin{split}
+		\hat{\theta_1} &=  \frac{2\alpha_1 - \sqrt{4\alpha_1^2 - 4\left( 4\alpha_1^2 - 3\alpha_2 \right) } }{2}\\
+		\hat{\theta_2} &=  \frac{2\alpha_1 + \sqrt{4\alpha_1^2 - 4\left( 4\alpha_1^2 - 3\alpha_2 \right) } }{2}
+	\end{split}
+\end{equation*}
+\section{Answer 2}
+Given:
+\begin{itemize}
+	\item {$X_1, \cdots, X_{10} \sim P_{\theta}$}
+	\item{$f_P\left( x \right) = \frac{1}{2}\left( \frac{1}{\theta} e^{-\frac{x}{\theta}} + \frac{1}{10} e^{-\frac{x}{10}}\right) $}
+	\item{$0<x<\infty$}
+	\item{ \[
+				\sum_{i=1}^{10} X_i = 150
+	.\] }
+\end{itemize}
+To Find: Method of Moments Estimator for $\theta$.
+ \newline\newline
+ First, calculating $\mu_1^{\prime}$ :
+\begin{equation*}
+	\begin{split}
+		\mathbb{E}\left[ X \right] = \mu_1^{\prime} &=   \int_{-\infty}^{\infty}x f_P\left( x \right) dx\\
+		&= \int_0^{\infty} \frac{1}{2}\left( \frac{1}{\theta} e^{-\frac{x}{\theta}} + \frac{1}{10} e^{-\frac{x}{10}}\right) . x. dx\\
+		&= \frac{1}{2\theta} \int_0^{\infty} xe^{-\frac{x}{\theta}} dx+ \frac{1}{20}\int_0^{\infty}xe^{-\frac{x}{10}} dx\\
+		&= \frac{\theta}{2} \Gamma\left( 2 \right) + 5 \Gamma\left( 2 \right)\\
+		&= \Gamma\left( 2 \right) \left( \frac{\theta}{2}+5 \right) 
+	\end{split}
+\end{equation*}
+Now, finding the inverse function $h_1$:
+\begin{equation*}
+	\begin{split}
+	\theta = 2\left(\frac{\mu_1^{\prime}}{\Gamma\left( 2 \right) } - 5 \right)
+	\end{split}
+\end{equation*}
+Approximating $\mu_1^{\prime}$ by $\alpha_1$:
+\begin{equation*}
+	\begin{split}
+		\alpha_1 = \frac{1}{10} \sum_{i=1}^{10} x_i = 15 
+	\end{split}
+\end{equation*}
+Hence, the M.M.E. of $\theta$ will be:
+ \begin{equation*}
+	\begin{split}
+		\hat{\theta} &=  2\left( \frac{\alpha_1}{\Gamma\left( 2 \right) }  - 5\right)\\
+		&= 2\left( \frac{15}{2} - 5 \right)\\
+		&= 5
+	\end{split}
+\end{equation*}
+\newpage
+\section{Answer 3}
+Given:
+\begin{itemize}
+	\item {\[
+				X_1,X_2,\cdots,X_n \sim P_{\theta}
+	.\] }
+\item{\[
+	f_P\left( x;\theta \right) = \frac{1}{2} e^{- \mid x-\theta \mid } \; \text{ for } x\in \mathbb{R}
+.\] }
+\item{\[
+	\theta \in \mathbb{R}
+.\] }
+\end{itemize}
+To Find: Maximum Likelihood Estimator of $\theta$.
+ \newline\newline
+ Finding the Likelihood Function $L\left( \theta \right) $:
+ \begin{equation*}
+ 	\begin{split}
+ 		L\left( \theta \right) &= \frac{1}{2^{n}} \exp\left[ -\sum_{i=1}^{n}  \mid x_i - \theta \mid  \right] 
+ 	\end{split}
+ \end{equation*}
+ To maximize $L\left( \theta \right) $ means to minimize $\sum_{}^{}  \mid x_i - \theta \mid $.
+\newline\newline
+Let's assume that $x_1,\cdots,x_n$ are arranged in ascending order. Thus we can formally write the target to minimize as:
+\begin{equation*}
+	\begin{split}
+		L_1\left( \theta \right) &= -\sum_{i=1}^{n} \mid 	x_i - \theta\mid 
+	\end{split}
+\end{equation*}
+Now, two cases arise:
+\begin{itemize}
+	\item {\textbf{CASE I:} $\theta < x_1$
+		\newline\newline
+		If that's the case, then:
+		\begin{equation*}
+			\begin{split}
+			L_1\left( \theta \right)  = -\sum_{i=1}^{n}   \left( x_{i} - \theta \right)  
+			\end{split}
+		\end{equation*}	
+		}
+	\item{\textbf{CASE II:} $\theta > x_n$ 
+		\newline\newline
+		If that's the case then:
+		\begin{equation*}
+			\begin{split}
+				L_1\left( \theta \right) = \sum_{i=1}^{n} \left( x_{i}-\theta \right) 
+			\end{split}
+		\end{equation*}	
+		}
+\end{itemize}
+Remember that we want to minimize the value of $L_1\left( \theta \right)$. Therefore, we see now that in CASE I that the function $L_1\left( \theta \right) $ is decreasing whereas in CASE II, $L_1\left( \theta \right) $ is increasing.
+\newline\newline
+Naturally, there will be a point of minima for $\theta$ between $\theta<x_1$ and $\theta>x_n$.
+\newline\newline
+Thus our task now is to find $i$ such that $x_{i} < \theta< \theta+d < x_{i+1}$ for some $d > 0$ and $i \in  \left\{ 1,2,\dots,n-1 \right\} $. Hence, we can write $L_1\left( \theta+d \right) $ as:
+\begin{equation*}
+	\begin{split}
+		L_1\left( \theta+d \right)  &= -\sum_{k=1}^{n}   \mid x_{k} - \theta - d \mid\\ 
+		&= -\sum_{k=1}^{i} \left( x_{k}- \theta - d \right) + \sum_{k=i+1}^{n} \left( x_{k} -\theta - d\right) \\
+		&= i\theta + id -\sum_{k=1}^{i} x_k -\left( n-i \right) \theta -\left( n-i \right) d + \sum_{k=1}^{n} x_k\\
+		&= \left( 2i - n \right) d  -\sum_{k = 1}^{i} \left( x_k-\theta \right)  + \sum_{k=i+1}^{n} \left( x_k - \theta \right)\\
+		&= \left( 2i-n \right) d +  L_1\left( \theta \right)\\
+		\implies L_1\left( \theta+d \right) - L_1\left( \theta \right) &= \left( 2i - n \right) d
+	\end{split}
+\end{equation*}
+Therefore,
+\begin{equation*}
+	\begin{split}
+		L_1\left( \theta+d \right)  - L_1\left( \theta \right) &= \begin{cases}
+			<0 &\text{ if } i<\frac{n}{2}\\
+			=0 &\text{ if } i = \frac{n}{2}\\
+			>0 &\text{ if } i>\frac{n}{2}
+		\end{cases}
+	\end{split}
+\end{equation*}
+Hence, $L_1\left( \theta \right) $ is decreasing for $i<\frac{n}{2}$, constant if $i = \frac{n}{2}$ and increasing for $i>\frac{n}{2}$.
+\newline\newline
+Therefore, if $n$ is even, then the M.L.E. of $\theta$ would be any $\theta\in \left[ x_{\frac{n}{2}}, x_{\frac{n}{2}+1} \right] $.
+\newline\newline
+Whereas, if $n$ is odd, then the M.L.E of  $\theta$ would be $x_{\frac{n+1}{2}}$.
+\section{Answer 4}
+Given:
+\begin{itemize}
+	\item {Samples drawn from a distribution $P_{\theta}$ 
+		\[
+			\left\{ 3,3,3,3,3,7,7,7 \right\} 
+		.\] 
+		}
+	\item{\[
+		P\left( 3 \right) = \theta \; \text{and}\; P\left( 7 \right) =1-\theta
+	.\] }
+\end{itemize}
+To Find: MME and MLE of $\theta$
+ \newline\newline
+For Methods of Moments Estimator for $\theta$:
+ \begin{equation*}
+	\begin{split}
+		\mathbb{E}\left[ X \right] =  \mu_1^{\prime} &=  3\theta + 7\left( 1-\theta \right) \\
+		&= 7 - 4\theta\\
+		\implies \theta &=  \frac{7 - \mu_1^{\prime}}{4}\\
+		\text{Also,}\\
+		\alpha_1 = \frac{1}{n} \sum_{i=1}^{n} x_{i} &= \frac{1}{8} \times 36 = 4.5
+	\end{split}
+\end{equation*}
+Hence, the M.M.E. for $\theta$ would be:
+\begin{equation*}
+	\begin{split}
+		\hat{\theta} &=  \frac{7-\alpha_1}{4}\\
+		&= \frac{7-4.5}{4}\\
+		&= \frac{25}{40} = \frac{5}{8} = 0.625
+	\end{split}
+\end{equation*}
+Now, to find the Maximum Likelihood Estimator for $\theta$:
+ \newline\newline
+ First, the Likelihood Function is:
+ \begin{equation*}
+ 	\begin{split}
+ 		L\left( \theta \right) &= \theta^{5}\left( 1-\theta \right) ^{3}
+ 	\end{split}
+ \end{equation*}
+ We need to maximize this Likelihood Function $L\left( \theta \right)$, therefore:
+ \begin{equation*}
+ 	\begin{split}
+ 		\frac{d}{d\theta} L\left( \theta \right) &= 5\theta^{4}\left( 1-\theta \right) ^3 - 3\theta^{5}\left( 1-\theta \right) ^2 = 0\\
+		&= \theta^{4}\left( 1-\theta \right) ^2 \left[ 5-8\theta \right] = 0\\
+		&\implies \theta = 0,1,\frac{5}{8}
+ 	\end{split}
+ \end{equation*}
+ To find the maximum, we check second order derivative, at the end of which, we see that if $\theta = \frac{5}{8}$, then $\frac{d^2}{d\theta^2}L\left( \theta = \frac{5}{8} \right) > 0$.
+ \newline\newline
+ Hence, M.L.E. of $\theta$ is:
+ \[
+	 \hat{\theta} = \frac{5}{8} = 0.625
+ .\]
+ \section{Answer 5}
+ Given:
+ \begin{itemize}
+	 \item {\[
+				 X_1,X_2,\dots, X_{n} \sim P_{\theta}
+	 .\] }
+ \item{The PMF for $P_{\theta}$ is:
+	 \[
+	 f\left( x;\theta \right)  = \begin{cases}
+	 	\frac{1-\theta}{2} &\text{ if } x=1\\
+		\frac{1}{2}&\text{ if }x = 2\\
+		\frac{\theta}{2} &\text{ if }x = 3\\
+		0 &\text{ otherwise}
+	\end{cases}	 .\] 
+	 }
+ \end{itemize}
+ To Find: Maximum Likelihood Estimator of $\theta \in  \left( 0,1 \right) $.
+\newline\newline
+The Likelihood Function is:
+\begin{equation*}
+	\begin{split}
+		L\left( \theta \right) &= \prod_{i=1}^{n}  \left[    \left( \frac{1-\theta}{2} \right) ^{\frac{\left( x_{i}-2 \right) \left( x_{i}-3 \right) }{2}}\left( \frac{1}{2} \right) ^{-\left( x_{i}-1 \right) \left( x_{i}-3 \right)}\left( \frac{\theta}{2} \right) ^{\frac{\left( x_{i}-1 \right) \left( x_{i}-2 \right) }{2} }\right]	
+	\end{split}
+\end{equation*}
+Yikes\dots\dots\dots
+\section{Answer 6}
+Given:
+\begin{itemize}
+	\item {\[
+				X_1,X_2,\dots,X_n \sim P_N
+	.\] }
+\item{PMF of $P_N$ is:
+	\[
+	P\left( X = k \right) = \begin{cases}
+		\frac{1}{N} & \text{ if } k =1,2,\dots,N\\
+		0 & \text{ otherwise}
+	\end{cases}
+	.\] 
+	}
+\item{$N$ is a positive integer.}
+\end{itemize}
+To Find: Maximum Likelihood Estimator of $N$.
+ \newline\newline
+ Firstly, the Likelihood Function $L\left( N \right) $ is:
+ \begin{equation*}
+ 	\begin{split}
+		L\left( N \right) &= \frac{1}{N^{n}}  \;\;\text{ if $x_1,x_2,\dots,x_n$ are positive integers $\le N$}
+	\end{split}
+ \end{equation*}
+ We need to maximize the Likelihood Function $L\left( N \right) $.
+ \newline\newline
+ Maximizing $\frac{1}{N^{n}}$ is equivalent to minimizing $N^{n}$ if all $x_1,x_2, \dots, x_n$ are positive integers \textbf{and} are $\le  N$.
+ \newline\newline
+ Now, if $x_1,x_2,\dots,x_n$ are positive integers $\le  N$, or, $N \ge x_1,x_2,\dots,x_{n}$, therefore it's easy to see that $N$ is minimized at the closest value of  $x_i$ to $N$, which is  $\text{max}\left( x_1,x_2,\dots,x_{n} \right)$. 
+ \newline\newline
+ Hence, the Maximum Likelihood Estimator $\hat{N}$ is:
+  \begin{equation*}
+ 	\begin{split}
+		\hat{N} = \text{max}\left( x_1,x_2,\dots,x_{n} \right) 
+ 	\end{split}
+ \end{equation*}
+
+\section{Answer 7}
+ Given:
+ \begin{itemize}
+	 \item {First $M$ fishes are caught from the pond, tagged and returned to the pond. Next $n$ fishes are caught at random out of which $x$ fishes are found to be tagged.}
+ \end{itemize}
+ To Find: Maximum Likelihood Estimator for $N$, the total number of fishes in the pond.
+ \newline\newline
+ Since our task was to maximize the number of fishes that we tag, hence we first find the probability of tagging $x$ fishes.
+ \newline\newline
+ Firstly, the probability of tagging $x$ fishes, where $X$ is the Random Variable denoting the number of fishes tagged so far:
+ \begin{equation*}
+	\begin{split}
+		P\left( X =x \right) = \frac{\Comb{M}{x} \Comb{N-M}{n-x}}{\Comb{N}{n}}
+	\end{split}
+\end{equation*}
+The Likelihood Function for $N$ thus becomes:
+ \begin{equation*}
+	\begin{split}
+		L\left( N \right) &= \frac{\Comb{M}{x} \Comb{N-M}{n-x}}{\Comb{N}{n}} \;\;\text{where $N \ge  M$, i.e. $N \in \left\{ M,M+1,\dots \right\} $}
+	\end{split}
+\end{equation*}
+Now, to maximize $L\left( N \right)$, calculating $\frac{L\left( N+1 \right) }{L\left( N \right) }$:
+\begin{equation*}
+	\begin{split}
+		\frac{L\left( N+1 \right) }{L\left( N \right) } &= \frac{\Comb{M}{x} \Comb{N+1-M}{n-x}}{\Comb{N+1}{n}} / \frac{\Comb{M}{x} \Comb{N-M}{n-x}}{\Comb{N}{n}}\\
+		&= \frac{\Comb{M}{x} \Comb{N-M+1}{n-x} \Comb{N}{n} }{\Comb{M}{x} \Comb{N-M}{n-x} \Comb{N+1}{n}}\\
+		&= \frac{\left( N-M+1 \right)  \left( N+1-n \right) }{\left( N-M+1-n+x \right) \left( N+1 \right) }
+	\end{split}
+\end{equation*}
+Now, if the function $\frac{L\left( N+1 \right) }{L\left( N \right) }$ is increasing, then:
+\begin{equation*}
+	\begin{split}
+		\frac{L\left( N+1 \right) }{L\left( N \right) } > 1
+	\end{split}
+\end{equation*}
+Therefore,
+\begin{equation*}
+	\begin{split}
+		N^2 -NM + N + N - M + 1 -nN + nM - n &> N^2 - NM + N -nN + xN + N - M + 1 - n + x\\
+		nM &> xN + x\\
+		N &< \frac{nM - x}{x}\\
+		N &< \frac{nM}{x} - 1
+	\end{split}
+\end{equation*}
+Similarity, if function $\frac{L\left( N+1 \right) }{L\left( N \right) }$ is decreasing, then it would be $<1$, which would transcribe to :
+ \begin{equation*}
+	\begin{split}
+		N > \frac{nM}{x} - 1
+	\end{split}
+\end{equation*}
+Hence, we see that $N$ on left side of $\frac{nM}{x} - 1$, the ratio $\frac{L\left( N+1 \right) }{L\left( N \right) }$ is increasing while decreasing on the right.
+\newline\newline
+Therefore the maximum likelihood should occur at $N = \frac{nM}{x}-1$
+\newline\newline
+Now, few cases arises on $\frac{nM}{x}$ 
+\begin{itemize}
+	\item {\textbf{CASE I:} $\frac{nM}{x}$ is an Integer.
+		\newline\newline
+		If that's the case, then M.L.E. is not unique, as the Likelihood remains maximum for for both $\frac{Mn}{x} - 1$ and $\frac{Mn}{x}$ as the likelihood Function's value between them is same, but since  $N$ has to be an integer therefore, only $\frac{Mn}{x}-1$ and $\frac{Mn}{x}$ are taken. 
+		}
+	\item{\textbf{CASE II:} $\frac{Mn}{x}$ is not an Integer.
+		\newline\newline
+		Note that $\left[ \frac{Mn}{x} \right]  >\left[ \frac{Mn}{x} \right] -1>  \left[ \frac{Mn}{x}  \right] - 2$, therefore:
+		\begin{equation*}
+			\begin{split}
+				L\left( \left[\frac{Mn}{x}  \right]  \right) < L\left( \left[ \frac{Mn}{x} \right] -1  \right) > L\left( \left[ \frac{Mn}{x} \right] -2 \right)   	
+			\end{split}
+		\end{equation*}
+		Hence, M.L.E. for $N$ in the case when  $\frac{Mn}{x}$ is not an integer is $\left[ \frac{Mn}{x} \right] -1$
+		}
+\end{itemize}
+\section{Answer 8}
+Given:
+\begin{itemize}
+	\item {\[
+				X_1,X_2,\dots,X_n \sim P_{\theta}
+	\] }
+\item{PMF of $P_{\theta}$, the lifetime of the integrated circuit is:
+	\[
+		f\left( x,\theta \right) =\begin{cases}
+			2\lambda x e^{-\lambda x^2} & \text{ if } x > 0\\
+			0&\text{ otherwise}
+		\end{cases}
+	\] 
+	}
+\item{$X$ be the R.V. denoting the number of integrated circuits that fail before $\tau$, where  $\tau > 0$ is a known time.}
+\end{itemize}
+To Find: Maximum Likelihood Estimator of the variance of $X$.
+\newline\newline
+To find the probability of number of ICs which fail before $\tau$, we should first find the probability of a I.C. failing before $\tau$ units if time:
+\begin{equation*}
+	\begin{split}
+		P\left( X_i <\tau \right) &= \int_0^{\tau} f\left( x,\theta \right) dx\\
+		&= 2\lambda\int_0^{\tau} x e^{-\lambda x^2}dx\\
+		&= 1 - e^{-\lambda \tau^2}	
+	\end{split}
+\end{equation*}
+Now, the number of ICs that fail before $\tau$, $X$ is:
+\begin{equation*}
+	\begin{split}
+		X \sim \text{Bin}\left( n, 1 - e^{-\lambda \tau^2} \right) 
+	\end{split}
+\end{equation*}
+Therefore, the variance of $X$ will become:
+ \begin{equation}
+	\begin{split}
+		\text{Var}\left( X \right) &= \mathbb{E}\left[ \left( X-\mathbb{E}\left[ X \right]  \right) ^2 \right]\\
+		&= n e^{-\lambda\tau^2}\left( 1 - e^{-\lambda\tau^2} \right)\\
+	\end{split}
+\end{equation}
+Remember that we want to find M.L.E. for $\left( 1 \right) $, thus if we find the M.L.E. for $\lambda$, then we can use that to find M.L.E. for $\left( 1 \right) $. Hence, we first try to find M.L.E for $\lambda$. The Likelihood function for $\lambda$ then becomes:
+\begin{equation*}
+	\begin{split}
+		L\left( \lambda \right) &= 2^{n}\lambda^{n} \left(\prod_{i=1}^{n}  x_i\right) e^{-\lambda \sum_{i=1}^{n} x_i^2 
+}	\end{split}
+\end{equation*}
+To find critical points:
+\begin{equation*}
+	\begin{split}
+	\frac{d}{d\lambda} L\left( \lambda \right) &= n	2^{n} \lambda^{n-1} \left( \prod_{i=1}^{n} x_i \right) e^{-\lambda \sum_{i=1}^{n} x_{i}^2} -  2^{n}\lambda^{n}\left( \prod_{i=1}^{n} x_{i}  \right) \left( \sum_{i=1}^{n} x_{i}^2\right) e^{-\lambda \sum_{i=1}^{n} x_{i}^2} = 0\\
+	&\implies \lambda = \frac{n}{\sum_{i=1}^{n} x_{i}^2}
+	\end{split}
+\end{equation*}
+Hence, the Maximum Likelihood Estimator for $\lambda$ will be:
+ \begin{equation*}
+	\begin{split}
+		\hat{\lambda} = \frac{n}{\sum_{i=1}^{n} x_{i}^2}
+	\end{split}
+\end{equation*}
+Therefore, we can now use this M.L.E. of $\lambda$ to find M.L.E. of another function of $\lambda$, which in this context is  $\text{Var}\left( X \right) = ne^{-\lambda \tau^2}\left( 1- \lambda e^{-\lambda\tau^2} \right) $, which then becomes:
+\begin{equation*}
+	\begin{split}
+		\hat{\text{Var}\left( X \right) } &= ne^{-\hat{\lambda}\tau^2} \left( 1 - \hat{\lambda}  e^{-\hat{\lambda}\tau^2}\right) 
+	\end{split}
+\end{equation*}
+which is the Maximum Likelihood Estimator for the Variance in the number of I.C. failing before time $\tau $.
+ \end{document}
+
+

@@ -1,0 +1,119 @@
+%        File: LRT.tex
+%     Created: Sat May 16 10:00 PM 2020 I
+% Last Change: Sat May 16 10:00 PM 2020 I
+%
+\documentclass[a4paper]{article}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Mathematical Statistics}
+\lhead{Likelihood Ratio Test \& Examples}
+\rfoot{Page \thepage}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+
+\title{Likelihood Ratio Test}
+\author{Animesh Renanse}
+\date{May 16, 2020}
+
+\begin{document}
+\maketitle
+\newpage
+
+\section{Likelihood Ratio Test}
+This test is designed for the case when we want to test Null Hypothesis $H_0:\mu = \mu_0$ against $H_1:\mu \neq  \mu_0$. As using UMP/MP level $\alpha$ tests does not exist in this problem.
+\subsection{Algorithm}
+\begin{enumerate}
+	\item {We want to test $H_0:\theta \in \Theta_0$ versus $H_1:\theta \in \Theta_1$.}
+	\item{Consider:
+			\[
+			\Lambda\left( \mathbf{x} \right) = \frac{sup_{\theta \in \Theta_0} L\left( \theta,\mathbf{x} \right) }{sup_{\theta \in \Theta_0\cup\Theta_1}L\left( \theta,\mathbf{x} \right) }
+			.\]
+			where \textbf{$\Lambda\left( \mathbf{x} \right) $ is called Likelihood Ratio Test Statistic.}
+		}
+	\item{Likelihood level $\alpha$ test is given by,
+		\[
+			\varphi\left( \mathbf{x} \right)  = \begin{cases}
+				1 & \text{ if } \Lambda\left( \mathbf{x} \right) < k\\
+				\gamma & \text{ if } \Lambda\left( \mathbf{x} \right) = k\\
+				0 & \text{ if } \Lambda\left( \mathbf{x} \right) > k
+			\end{cases}
+		.\] 
+		\textbf{where $\gamma$ and $k$ are such that $\mathbb{E}_{\theta}\left( \varphi\left( \mathbf{X} \right)  \right) \le  \alpha$ for all $\theta \in \Theta_0$.} 
+		}
+\end{enumerate}
+
+
+\subsection{Discussion}
+\begin{itemize}
+	\item {$sup_{\theta \in \Theta_0}L\left( \theta,\mathbf{x} \right) $ can be considered as \textbf{the maximum value of the Likelihood Function over $\Theta_0$ when $\mathbf{X} = \mathbf{x}$ is observed}}
+	\item{Similarly, $sup_{\theta \in  \Theta_0\cup\Theta_1}L\left( \theta,\mathbf{x} \right) $ can be considered as \textbf{the maximum value of the Likelihood Function over $\Theta_0 \cup \Theta_1$ when $\mathbf{X} = \mathbf{x}$ is observed.}}
+	\item{Clearly $\Lambda\left( \mathbf{x} \right) \in \left[ 0,1 \right] $.}
+	\item{The main point of the whole algorithm/test is to \textit{reject $H_0$ when $\Lambda\left( \mathbf{x} \right) $ is small}. This is when likelihood under $\Theta_0$ is lower than that of the likelihood under $\Theta_0\cup\Theta_1$. This means that \textit{observed values are more likely under $\Theta_1$ rather than $\Theta_0$. Hence we reject $H_0$. }}
+\end{itemize}
+
+\section{Examples}
+\textbf{Question: }Let $X_1, X_2, \cdots, X_{n} \overset{i.i.d.}{\sim} N\left( \mu,\sigma^{2} \right) $, where $\sigma$ is known. Let $\mu_0$ be a real number. We are interested to test $H_0 : \mu = \mu_0$ against $H_1 : \mu \neq \mu_0$.
+\newline\newline
+In this question, $\Theta_0 = \left\{ \mu_0 \right\} $ and $\Theta_1 = \mathbb{R} /\left\{ \mu_0 \right\}$. Hence $\Theta_0 \cup \Theta_1 = \mathbb{R}$.
+\newline\newline
+Now, step 2 of the algorithm,
+ \[
+	 sup_{\mu \in \Theta_0}L\left( \mu \right) = L\left( \mu_0 \right) = \left( \frac{1}{\sigma\sqrt{2\pi} } \right)^{n} \exp\left[ - \frac{1}{2\sigma^{2}} \sum_{i = 1}^{n} \left( x_{i} - \mu_0 \right)^2 \right] 
+.\] 
+and,
+\[
+	sup_{\mu \in \Theta_0\cup\Theta_1}L\left( \mu \right) = L\left( \overline{x} \right)   = \left( \frac{1}{\sigma\sqrt{2\pi} } \right)^{n}\exp\left[ - \frac{1}{2\sigma^2}\sum_{i=1}^{n} \left( x_{i} - \overline{x} \right)^2  \right]  
+.\]
+Therefore, we can calculate $\Lambda\left( \mathbf{x} \right) $ 
+\[
+	\Lambda\left( \mathbf{x} \right) = \frac{sup_{\theta \in \Theta_0}L\left( \theta,\mathbf{x} \right) }{sup_{\theta \in \Theta_0\cup\Theta_1}L\left( \theta,\mathbf{x} \right) } = \exp\left[ -\frac{1}{2	\sigma^2}\sum_{i=1}^{n} \left( x_{i} - \mu_0\right)^2 - \left( x_{i} - \overline{x} \right)^2  \right]
+.\] 
+Expanding it,
+\begin{equation*}
+	\begin{split}
+	\Lambda\left( \mathbf{x} \right) &= \exp\left[ -\frac{1}{2\sigma^2}\sum_{i=1}^{n} \left( 2x_{i} - \overline{x} - \mu_0\right)\left(  \overline{x} - \mu_0\right)  \right]\\
+	&= \exp\left[ -\frac{1}{2\sigma^2}\left( \sum_{i=1}^{n} 2x_{i}\left( \overline{x} - \mu_0 \right) - \sum_{i=1}^{n} \left( \overline{x}+\mu_0 \right) \left( \overline{x}-\mu_0 \right)\right)  \right]\\	
+        &= \exp\left[ -\frac{1}{2\sigma^2} \left(2\overline{x}n\left( \overline{x}-\mu_0 \right) - n\overline{x}^2 + n\mu_0^2\right) \right]\\
+	\text{Hence,}\\
+	\Lambda\left( \mathbf{x} \right) &=  \exp\left[ -\frac{n}{2\sigma^2}\left( \overline{x} - \mu_0 \right)^2 \right] < k \iff  \mid \overline{x} - \mu_0 \mid > k_1  \text{  for some $k_1 \in \mathbb{R}.$}
+	\end{split}
+\end{equation*}
+Therefore, now we can write the Likelihood Ratio Level $\alpha$ test as:
+\[
+	\varphi\left( \mathbf{x} \right)  = \begin{cases}
+		1 & \text{ if }  \mid \overline{x} - \mu_0 \mid >k_1\\
+		0 & \text{ otherwise}
+	\end{cases}
+\]
+\textit{remember that $X_{i} \sim N\left( \mu,\sigma^2 \right) $}
+\newline
+where $k_1$ is such that,
+\begin{equation*}
+	\begin{split}
+		\mathbb{E}_{\mu_0}\left( \varphi\left( \mathbf{x} \right)  \right) &=  P_{\mu_0}\left[  \mid \overline{X} - \mu_0	 \mid  > k_1\right] = \alpha\\
+	&= 	P_{\mu_0} \left[ \frac{\sqrt{n} }{\sigma} \mid \overline{X} - \mu_0 \mid  > \frac{\sqrt{n} }{\sigma}k_1\right] = \alpha\\
+	&=  P_{\mu_0}\left[ \frac{\sqrt{n}}{\sigma}\left( \overline{X} - \mu_0 \right) > \frac{\sqrt{n} }{\sigma}k_1 \right] = \frac{\alpha}{2} 
+\end{split}
+\end{equation*}
+which implies that
+\[
+	\frac{\sqrt{n} }{\sigma} k_1 = z_{\frac{\alpha}{2}}
+.\] 
+Note that we followed the same procedure as in finding UMP/MP test from previous topic.
+\newline\newline
+Therefore, \textbf{the Likelihood Ratio Level $\alpha$ test is given by:} 
+\[
+	\varphi\left( \mathbf{x} \right)  = \begin{cases}
+		1 & \text{ if } \frac{\sqrt{n} }{\sigma}\left( \overline{X} - \mu_0 \right) > z_{\frac{\alpha}{2}}\\
+		0 & \text{ otherwise } 
+	\end{cases}
+.\] 
+
+\end{document}
+
+

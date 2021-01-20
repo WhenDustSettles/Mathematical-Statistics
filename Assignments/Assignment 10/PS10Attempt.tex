@@ -1,0 +1,290 @@
+%        File: PS10Attempt.tex
+%     Created: Tue Jun 02 12:00 AM 2020 I
+% Last Change: Tue Jun 02 12:00 AM 2020 I
+%
+\documentclass[a4paper]{article}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{MA212M-Mathematical Statistics}
+\lhead{Assignment 10}
+\rfoot{Page \thepage}
+
+\title{Assignment 10 - MA212M}
+\author{Animesh Renanse}
+\date{\today}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+
+
+\begin{document}
+\maketitle
+\newpage
+
+\section{Answer 1}
+Given:
+\begin{itemize}
+	\item {\[
+				X_1,X_2,\cdots,X_{25} \sim N\left( \mu, 81 \right) 
+	\] }
+\item{\[
+			\overline{X}	= \frac{1}{25}\sum_{i=1}^{25} x_i = 81.2
+\] }
+\end{itemize}
+To Find: $95\%$ Confidence Interval for  $\mu$.
+\newline\newline
+So to find $100\left( 1-\alpha \right) \%$ Confidence Interval, we first need to find a function of $\theta$ which is $g\left( \theta \right)$ and two statistics $T_1\left( x \right) $ and $T_2\left( x \right)$ such that $P\left( T_1\left( x \right) \le  g\left( \theta \right) \le T_2\left( x \right)  \right) = 1- \alpha$.
+\newline\newline
+Note that the sample mean $\overline{X}$ follows a Normal distribution with mean $\mu$ and variance $\frac{\sigma^2}{n}$.
+\newline\newline
+Therefore,
+\begin{equation*}
+	\begin{split}
+		\overline{X} &\sim N\left( \mu, \frac{81}{25} \right)\\
+		Z = \frac{5\left( \overline{X} - \mu \right)  }{9} &\sim N\left( 0,1 \right)\\		
+	\end{split}
+\end{equation*}
+Now note that the distribution of $Z$ is free from $\mu$, the parameter whose confidence interval we want to find. Thus, the $\alpha\%$ confidence interval will be:
+ \begin{equation*}
+	\begin{split}
+		P\left( -z_\frac{\alpha}{2} \le Z \le z_{\frac{\alpha}{2}}\right) &= 1-\alpha\\
+		P\left(  -z_\frac{\alpha}{2} \le \frac{5\left( \overline{X} - \mu\right) }{9} \le z_{\frac{\alpha}{2}} \right) &= 1-\alpha\\
+		P\left( \overline{X} - \frac{9}{5}z_\frac{\alpha}{2} \le \mu \le \overline{X} + \frac{9}{5}z_\frac{\alpha}{2} \right) &= 1-\alpha 
+	\end{split}
+\end{equation*}
+Therefore, the $95\%$ confidence interval for  $\mu$ would be:
+ \begin{equation*}
+ 	\begin{split}
+		\left[ \overline{X} - \frac{9}{5}z_\frac{\alpha}{2} , \overline{X} + \frac{9}{5}z_\frac{\alpha}{2} \right] \; \; \text{ for $100\left( 1-\alpha \right) \%$ confidence interval}\\
+		\left[ 81.2 - \frac{9}{5}\times 1.96, 81.2 + \frac{9}{5}\times 1.96 \right] \text{Note that $z_\frac{\alpha}{2}$ is $P\left( Z>z_\frac{\alpha}{2} \right) = \frac{\alpha}{2}$, hence: }\\
+		\implies\left[ 77.67, 84.73 \right] 
+ 	\end{split}
+ \end{equation*}
+ \newpage
+ \section{Answer 2}
+ Given:
+ \begin{itemize}
+	 \item {\[
+				 X_1,X_2,\dots,X_n \sim N\left( \mu,\sigma^2 \right) 
+	 .\] }
+ \item{
+	 \begin{equation*}
+	 	\begin{split}
+			\overline{X} &=  \frac{1}{25} \sum_{i=1}^{25} X_i = 81.2\\
+			S^2 &=  \frac{1}{24} \sum_{i=1}^{25} \left( X_i - \overline{X} \right) ^2 = 81
+	 	\end{split}
+	 \end{equation*}
+	 }
+ \end{itemize}
+ To Find: $95\%$ Confidence Interval for the mean  $\mu$.
+\newline\newline
+We know that:
+\begin{equation*}
+	\begin{split}
+		\overline{X} &\sim N\left( \mu,\frac{\sigma^2}{25} \right) \\
+		\implies \frac{5\left( \overline{X} - \mu \right) }{\sigma} &\sim N\left( 0,1 \right)\\ 
+		\frac{24S^2}{\sigma^2} &\sim \chi^2_{24}\\
+		\implies \sqrt{\frac{S^2}{\sigma^2}} &\sim \sqrt{ \frac{\chi^2_{24}}{24}} 
+	\end{split}
+\end{equation*}
+Therefore, if we divide those two distributions, we get:
+\begin{equation*}
+	\begin{split}
+	Z =	\frac{5\left( \overline{X} - \mu  \right) }{S} \sim t_{24} 
+	\end{split}
+\end{equation*}
+Hence, we now have a function of $\mu$ which is only a function of $\mu$ and no other parameters. Also, since Student $t$ distribution is symmetric about 0, therefore we can get total $1-\alpha$ probability just like we did in standard normal distribution.
+\begin{equation*}
+	\begin{split}
+		P\left( -t_{\frac{\alpha}{2},24} \le Z \le t_{\frac{\alpha}{2},24} \right) &=  1-\alpha\\
+		P\left( -t_{\frac{\alpha}{2},24}  \le \frac{5\left( \overline{X}-\mu \right) }{S}\le t_{\frac{\alpha}{2},24}\right) &= 1-\alpha\\
+		P\left( \overline{X} - \frac{S}{5} t_{\frac{\alpha}{2},24} \le  \mu \le \overline{X} + \frac{S}{5}t_{\frac{\alpha}{2},24} \right)  &=  1-\alpha
+	\end{split}
+\end{equation*}
+Therefore, the $100\left( 1-\alpha \right) \%$ Confidence Interval for $\mu$ is:
+ \begin{equation*}
+	\begin{split}
+		\left[ \overline{X} - \frac{S}{5}t_{\frac{\alpha}{2},24}, \overline{X} + \frac{S}{5}t_{\frac{\alpha}{2},24} \right] 
+	\end{split}
+\end{equation*}
+Therefore, when $\alpha = 0.05$:
+ \begin{equation*}
+	\begin{split}
+		\left[81.2 - \frac{9}{5} \times 2.064 , 81.2 + \frac{9}{5}\times 2.064 \right]\\
+		\implies\left[ 77.4848 , 84.9152 \right] 
+	\end{split}
+\end{equation*}
+\newpage
+\section{Answer 3}
+Given:
+\begin{itemize}
+	\item {
+			\begin{equation*}
+				\begin{split}
+					X_1,X_2,\dots,X_n \sim N\left( \mu,16 \right) 
+				\end{split}
+			\end{equation*}
+		}
+	\item{$\overline{X}$ is the sample mean}
+	\item{$\left( \overline{X} - 1, \overline{X} + 1 \right) $ is the $90\%$ Confidence Interval for $\mu$.}
+\end{itemize}
+To Find: The smallest sample size $n$ for the above conditions.
+\newline\newline
+The Confidence Interval for $\mu$ is:
+ \begin{equation*}
+	\begin{split}
+		\left[ \overline{X} - \frac{\sigma}{\sqrt{n} } z_\frac{\alpha}{2}, \overline{X} + \frac{\sigma}{\sqrt{n} }z_\frac{\alpha}{2} \right] 
+	\end{split}
+\end{equation*}
+Therefore, $\frac{\sigma}{\sqrt{n} }z_\frac{\alpha}{2} = 1$, hence:
+\begin{equation*}
+	\begin{split}
+		\frac{4}{\sqrt{n} }z_\frac{\alpha}{2} &=  1\\
+		\sqrt{n} &=  4z_{\frac{\alpha}{2}}\\
+		n &= 16z^2_{\frac{\alpha}{2}}
+	\end{split}
+\end{equation*}
+Since $\alpha = 0.1$, therefore:
+ \begin{equation*}
+	\begin{split}
+		n &=  16z^2_{0.05}\\
+		n &= 16 \times \left( 1.65 \right) ^2\\
+		n &= 43.56
+	\end{split}
+\end{equation*}
+Therefore, $n = 44$.
+\newpage
+\section{Answer 4}
+Given:
+\begin{itemize}
+	\item {
+		\begin{equation*}
+			\begin{split}
+				X_1,X_2,\dots,X_m &\sim N\left( \mu_1,\sigma^2 \right) \\
+				Y_1,Y_2,\dots,Y_n &\sim N\left( \mu_2,\sigma^2 \right) 
+			\end{split}
+		\end{equation*}
+		}
+\end{itemize}
+To Find: The $100\left( 1-\alpha \right) \%$ Confidence interval when $\sigma$ is known and when  $\sigma$ is unknown.
+\newline\newline
+Remember that:
+\begin{equation*}
+	\begin{split}
+		\overline{X} &\sim N\left( \mu_1, \frac{\sigma^2}{m} \right)\\
+		\frac{\left( m-1 \right) S_X^2}{\sigma^2} &\sim \chi^2_{m-1}\\
+		\overline{Y} &\sim N\left( \mu_2,\frac{\sigma^2}{n} \right) \\
+		\frac{\left( n-1 \right) S_Y^2}{\sigma^2} &\sim \chi^2_{n-1}
+		\end{split}
+\end{equation*}
+\subsection{When $\sigma$ is known}
+Note that:
+\begin{equation*}
+	\begin{split}
+		\overline{X} - \overline{Y} &\sim N\left( \mu_1-\mu_2, \frac{\sigma^2}{m}+\frac{\sigma^2}{n} \right)\\
+		Z = \frac{\overline{X} - \overline{Y} - \left( \mu_1-\mu_2 \right) }{\sqrt{\frac{\sigma^2}{m}+\frac{\sigma^2}{n}} } &\sim N\left( 0,1\right) 
+	\end{split}
+\end{equation*}
+Therefore, $100\left( 1-\alpha \right) \%$ confidence interval will be:
+\begin{equation*}
+	\begin{split}
+		P\left( -z_{\frac{\alpha}{2}} \le Z \le z_\frac{\alpha}{2} \right) &=  1-\alpha\\
+		P\left( -z_\frac{\alpha}{2} \le \frac{\overline{X} - \overline{Y} - \left( \mu_1-\mu_2 \right) }{\sqrt{\frac{\sigma^2}{m} + \frac{\sigma^2}{n}} } \le z_\frac{\alpha}{2}\right) &=  1-\alpha\\
+		P\left( \overline{X}-\overline{Y} - \sqrt{\frac{\sigma^2}{m} + \frac{\sigma^2}{n}}z_\frac{\alpha}{2} \le \mu_1-\mu_2 \le \overline{X} -\overline{Y} +\sqrt{\frac{\sigma^2}{m}+\frac{\sigma^2}{n}}z_\frac{\alpha}{2}   \right) &= 1-\alpha 
+	\end{split}
+\end{equation*}
+Therefore, if $\sigma$ is known, then the $100\left( 1-\alpha \right) $ Confidence Interval for $\mu_1-\mu_2$ is:
+\begin{equation*}
+	\begin{split}
+		\left[ \overline{X} - \overline{Y} - \sqrt{\frac{\sigma^2}{m}+\frac{\sigma^2}{n}} , \overline{X} - \overline{Y} + \sqrt{\frac{\sigma^2}{m}+ \frac{\sigma^2}{n}}  \right] 
+	\end{split}
+\end{equation*}
+
+\newpage
+\subsection{When $\sigma$ is unknown}
+When $\sigma$ is unknown, then first note that:
+\begin{equation*}
+	\begin{split}
+		\frac{\sqrt{m}\left( \overline{X} - \mu_1 \right)  }{\sigma} &\sim N\left( 0,1 \right)\\
+		\frac{\left( m-1 \right) S_X^2}{\sigma^2} &\sim \chi^2_{m-1}\\
+		\frac{\left( n-1 \right) S_Y^2}{\sigma^2} &\sim \chi^2_{n-1}
+	\end{split}
+\end{equation*}
+Since $\chi^2$ distribution is additive, therefore:
+\begin{equation*}
+	\begin{split}
+		\frac{\left( m-1 \right) S_X^2}{\sigma^2} + \frac{\left( n-1 \right) S_Y^2}{\sigma^2} \sim \chi^2_{m+n-2}
+	\end{split}
+\end{equation*}
+Therefore, if we divide the distribution of difference in sample mean with the sum of sample variance, we get:
+\begin{equation*}
+	\begin{split}
+		\frac{\overline{X} - \overline{Y} - \left( \mu_1-\mu_2 \right) }{\sigma\sqrt{\frac{1}{m}+\frac{1}{n}} } \times  \sigma \sqrt{  \frac{\left( m+n-2 \right) }{\left( m-1 \right) S_X^2 + \left( n-1 \right) S_Y^2} }    &\sim t_{m+n-2}\\
+		\frac{\overline{X} - \overline{Y} - \left( \mu_1 - \mu_2 \right) }{S_P} \sqrt{\frac{mn}{m+n} } &\sim t_{m+n-2} 
+	\end{split}
+\end{equation*}
+Hence, the $100\left( 1-\alpha \right) \%$ Confidence Interval for the $\mu_1-\mu_2$ is:
+\begin{equation*}
+	\begin{split}
+		\left[ \overline{X} - \overline{Y} - S_P \sqrt{\frac{m+n}{mn}}t_\frac{\alpha}{2} , \overline{X} - \overline{Y} + S_P \sqrt{\frac{m+n}{mn}}t_\frac{\alpha}{2}   \right] 
+	\end{split}
+\end{equation*}
+\newpage
+\section{Answer 5}
+Given:
+\begin{itemize}
+	\item {
+		\begin{equation*}
+			\begin{split}
+				X_1,X_2,\dots,X_7 &\sim N\left( \mu_1,\sigma^2 \right)\\
+				Y_1,Y_2,\dots,Y_7 &\sim N\left( \mu_2,\sigma^2 \right)
+			\end{split}
+		\end{equation*}
+		}
+	\item{
+		\begin{equation*}
+			\begin{split}
+				\overline{X} &=  4.8\\
+				S_X^2 &= 8.38\\
+				\overline{Y} &= 5.4\\
+				S_Y^2 &= 7.62
+			\end{split}
+		\end{equation*}
+		}
+	\item{$\sigma$ is unknown.}
+\end{itemize}
+To Find: $95\%$ Confidence Interval for  $\mu_1-\mu_2$.
+\newline\newline
+We found the $100\left( 1-\alpha \right) \%$ confidence interval for this case in question 4. Therefore, to use that:
+\begin{equation*}
+	\begin{split}
+		S_P^2 &= \frac{\left( m-1 \right) S_X^2 + \left( n-1 \right) S_Y^2}{m+n-2}\\
+		&= \frac{1}{2} \left( 8.38 + 7.62 \right)\\
+		&= 8
+	\end{split}
+\end{equation*}
+Now,
+\begin{equation*}
+	\begin{split}
+		t_{\frac{\alpha}{2}} = t_{0.025} = 2.179
+	\end{split}
+\end{equation*}
+Therefore, the C.I. is:
+\begin{equation*}
+	\begin{split}
+		\left[ 4.8-5.4 - \frac{\sqrt{14\times 8}}{7}\times 2.179, 4.8 - 5.4 + \frac{\sqrt{14\times 8} }{7} \times 2.179 \right] 	\\
+		\left[ -3.89, 2.69 \right] 
+	\end{split}
+\end{equation*}
+\newpage
+\section{Answer 6}
+
+\end{document} 
+
+

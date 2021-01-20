@@ -1,0 +1,359 @@
+%        File: PS11Attempt.tex
+%     Created: Mon Jun 08 06:00 PM 2020 I
+% Last Change: Mon Jun 08 06:00 PM 2020 I
+%
+\documentclass[a4paper]{article}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{MA212M - Mathematical Statistics}
+\lhead{Assignment 11}
+\rfoot{Page \thepage}
+
+\title{Assignment 11 - MA212M}
+\author{Animesh Renanse}
+\date{\today}
+
+\begin{document}
+\maketitle
+\newpage
+\section{Answer 1}
+Given:
+\begin{itemize}
+	\item {$X_1,X_2, \cdots, X_n \sim N\left( \mu,\sigma^2 \right) $ 
+		}
+	\item{$\sigma$ is known.}
+\end{itemize}
+\subsection{Answer 1.a}
+To Find: Most Powerful level $\alpha$ test for $H_0 : \mu = \mu_0$ against $H_1 : \mu = \mu_1$, where $\mu_1<\mu_0$.
+\newline\newline
+Since both $\Theta_0 = \mu_0$ and $\Theta_1 = \mu_1$ are singleton, therefore, we can use Neyman Pearson Lemma.
+\newline\newline
+Hence, we first need to find $\frac{L\left( \mu_1 \right) }{L\left( \mu_0 \right) }$
+\begin{equation*}
+	\begin{split}
+		\frac{L\left( \mu_1 \right) }{L\left( \mu_0 \right) } &= \exp\left( \frac{1}{2\sigma^2} \left\{ 2n\overline{x}\left( \mu_1-\mu_0 \right) + n\left( \mu_0^2 - \mu_1^2 \right)  \right\}  \right) 
+	\end{split}
+\end{equation*}
+Therefore, if $\frac{L\left( \mu_1 \right) }{L\left( \mu_0 \right) } > k$, this implies that
+\begin{equation*}
+	\begin{split}
+		\overline{x} < k_1 \;\;\text{ where $k_1 > 0$, as $\mu_1 < \mu_0 $}
+	\end{split}
+\end{equation*}
+Thus the M.P. level $\alpha$ test is
+\begin{equation*}
+	\begin{split}
+		\varphi\left( x \right) = \begin{cases}
+			1 & \text{ if } \overline{x} < k_1\\
+			\gamma & \text{ if } \overline{x} = k_1\\
+			0 & \text{ if } \overline{x} > k_1
+		\end{cases}
+	\end{split}
+\end{equation*}
+this should be such that 
+\begin{equation*}
+	\begin{split}
+		\mathbb{E}_{\mu_0}\left[ \varphi \left( x \right)  \right] &= \alpha\\
+	\end{split}
+\end{equation*}
+\begin{equation*}
+	\begin{split}
+		\mathbb{E}_{\mu_0} \left[ \varphi\left( x \right)  \right] &= P\left( \overline{X}<k_1 \right) + \gamma P\left( \overline{X} = k_1 \right)\\
+		&= P\left( \overline{X}<k_1 \right) + 0 \;\;\text{ as $\overline{X}$ follows a Normal distribution}\\
+		&= P\left( \overline{X} < k_1 \right) \; \text{ where } \overline{X}  \sim N\left( \mu_0 , \frac{\sigma^2}{n} \right) \\
+		&\implies \frac{\sqrt{n} \left( \overline{X} - \mu_0 \right)  }{\sigma} \sim N\left( 0,1 \right)\\
+		&\implies P\left( \overline{X}< k_1 \right) = \Phi\left( \frac{ \sqrt{n}\left( k_1-\mu_0 \right)  }{\sigma} \right) = \alpha\\
+		&\implies k_1 = \frac{z_\alpha \sigma}{\sqrt{n} } + \mu_0
+	\end{split}
+\end{equation*}
+Also, since $P\left( \overline{X} = k_1	 \right) = 0$ therefore, $\gamma = 0$.
+\newline\newline
+Hence,
+\begin{equation*}
+	\begin{split}
+		\varphi\left( x \right) = \begin{cases}
+			1 & \text{ if } \overline{x} - \mu_0 < \frac{z_\alpha}{\sqrt{n} } \sigma\\
+			0 & \text{ otherwise }
+		\end{cases}
+	\end{split}
+\end{equation*}
+\subsection{Answer 1.b}
+To Find: Uniformly Most Probable level $\alpha$ test for $H_0 : \mu = \mu_0$ against $H_1 : \mu < \mu_0$.
+\newline\newline
+Note that the statement of this question is exactly same as that for that of part  $1.a$, the U.M.P. level  $\alpha$ test is same as in  $1.a$
+\section{Answer 2}
+Given:
+\begin{itemize}
+	\item {$\phi\left( . \right) $ be a M.P. level $\alpha$ test for testing $H_0 : \theta = \theta_0$ against $H_1 : \theta = \theta_1$}
+\end{itemize}
+To Show: $\beta\left( \theta_0 \right) \le \beta\left( \theta_1 \right) $ where $\beta\left( . \right) $ is the power function of the Most Powerful test.
+\newline\newline
+Consider
+\begin{equation*}
+	\begin{split}
+		\phi\left( x \right) = \alpha \;\;\text{ for all $x$}
+	\end{split}
+\end{equation*}
+as a test.
+\newline\newline
+Clearly, $\mathbb{E}_{\theta_0} \left[ \phi\left( x \right)  \right] = \alpha$
+\newline\newline
+Hence, $\phi\left( x \right) $ is the most powerful level $\alpha$ test.
+Since $\phi\left( x \right) $ is the M.P. level $\alpha$ test, therefore,
+\begin{equation*}
+	\begin{split}
+		\beta\left( \theta \right) &\ge \beta^{*}\left( \theta \right)\;\;\text{where}\;\; \theta \in \Theta_1\\
+\implies \beta\left( \theta_1 \right) &\ge \beta^{*}\left( \theta_1 \right)\\
+\implies \beta\left( \theta_1 \right) &\ge \alpha
+	\end{split}
+\end{equation*}
+where $\beta^{*}\left( . \right) $ represents power function for all other level $\alpha$ tests.
+\newline\newline
+Note that $\beta\left( \theta_0 \right) $ represents the probability of rejecting $H_0$ when $\theta_0$ is the true parameter, i.e.  $H_0$ is correct. Which is nothing but Type-I Error.
+\newline\newline
+Since
+\begin{equation*}
+	\begin{split}
+		\beta\left( \theta_0 \right) &= \mathbb{E}_{\theta_0}\left[ \phi\left( x \right)  \right] \le \alpha\\
+		\beta\left( \theta_0 \right) &\le  \alpha
+	\end{split}
+\end{equation*}
+Therefore:
+\begin{equation*}
+	\begin{split}
+		\beta\left( \theta_0 \right) \le \beta\left( \theta_1\right) 
+	\end{split}
+\end{equation*}
+\newpage
+\section{Answer 3}
+Given:
+\begin{itemize}
+	\item {$X_1$ and $X_2$ are two random samples drawn from a PDF $f\left( x \right) $, $x \in \mathbb{R}$.}
+	\item{Consider
+		\begin{equation*}
+			\begin{split}
+				f_0\left( x \right) &= \frac{3}{64}x^2 I_{\left( 0,4 \right) }\left( x \right) \\
+				f_1\left( x \right) &= \frac{3}{16}\sqrt{x} I_{\left( 0,4 \right) }\left( x \right) 
+			\end{split}
+		\end{equation*}
+		}
+\end{itemize}
+To Find: The most powerful level $\alpha$ test for testing $H_0:f\left( x \right) = f_0\left( x \right) $ against $H_1: f\left( x \right) = f_1\left( x \right) $ 
+\newline\newline
+The Likelihood function is:
+\begin{equation*}
+	\begin{split}
+		L\left( x_1,x_2 \right) &=  f\left( x_1 \right) f\left( x_2 \right)\\
+	\end{split}
+\end{equation*}
+Since both $\Theta_0 = f_0$ and $\Theta_1 = f_1$ are singleton, thus, using Neyman-Pearson Lemma, we get the M.P. level $\alpha$ test function as
+\begin{equation*}
+	\begin{split}
+		\varphi\left( x \right) = \begin{cases}
+			1 &\text{ if } \frac{L\left( \theta_1 \right) }{L\left( \theta_0 \right) }>k\\
+			\gamma & \text{ if } \frac{L\left( \theta_1 \right) }{L\left( \theta_0 \right) }=k\\
+			0 & \text{ if }\frac{L\left( \theta_1 \right) }{L\left( \theta_0 \right) }<k
+		\end{cases}
+	\end{split}
+\end{equation*} 
+Here,$\frac{L\left(\theta_1  \right) }{L\left( \theta_0 \right) }$ is: 
+\begin{equation*}
+	\begin{split}
+		\frac{L\left( f_1 \right) }{L\left( f_0 \right) } &= 16\left( x_1x_2 \right) ^{\frac{3}{2}}
+	\end{split}
+\end{equation*}
+Therefore, if $\frac{L\left( f_1 \right) }{L\left( f_0 \right) }>k \implies x_1x_2 > k_1$ for some $k_1 > 0$.
+\newline\newline
+Consider now a new random variable under $H_0$:
+\begin{equation*}
+	\begin{split}
+		Y = -6\ln \frac{X_1}{4}
+	\end{split}
+\end{equation*}
+Note that $\frac{dx_1}{dy} = -\frac{2}{3}e^{-\frac{y}{6}}$
+\newline\newline
+This gives us the PDF of $Y$ as 
+ \begin{equation*}
+	\begin{split}
+		f_Y\left( y \right) &= \frac{3}{64}\left( 4e^{-\frac{y}{6}} \right) \frac{2}{3}e^{-\frac{y}{6}} \;\;\text{ if } y>0\\
+		&= \frac{1}{2} e^{-y} \;\;\text{ if } y>0
+	\end{split}
+\end{equation*}
+Now, note that
+\begin{equation*}
+	\begin{split}
+		Y \sim \chi^2_2
+	\end{split}
+\end{equation*}
+Also, if $Y_1,Y_2 \sim \chi^2_2$, then $Y_1+Y_2 \sim \chi^2_4$.
+\newline\newline
+Hence, we can now write
+\begin{equation*}
+	\begin{split}
+		x_1,x_2 > k_1 & \implies \frac{x_1}{4}\frac{x_2}{4}>k_2\\
+		&\implies \ln \frac{x_1}{4} + \ln \frac{x_2}{4} > k_3\\
+		&\implies -6\ln \frac{x_1}{4} -6\ln \frac{x_2}{4} < k_4
+	\end{split}
+\end{equation*}
+Now, since $\mathbb{E}_{f_0}\left[ \varphi\left( x \right)  \right] = \alpha $
+Therefore (note that $\gamma = 0$ as in the previous question)
+\begin{equation*}
+	\begin{split}
+		\mathbb{E}_{f_0} \left[ \varphi\left(  x\right)  \right] &=  P\left( Z< k_4	\right) \;\;\text{ where $Z \sim \chi^2_4$} \\
+		&\implies k_4 = \chi^2_{4;1-\alpha}
+	\end{split}
+\end{equation*}
+Hence,
+\begin{equation*}
+	\begin{split}
+		\varphi\left( x \right) &= \begin{cases}
+			1 & \text{ if } -6\ln \frac{x_1}{4} - 6\ln \frac{x_2}{4} < \chi^2_{4;1-\alpha}\\
+			0 & \text{ otherwise}
+		\end{cases}
+	\end{split}
+\end{equation*}
+\section{Answer 4}
+Given:
+\begin{itemize}
+	\item {$X_1,X_2,\dots,X_n \sim P\left( \lambda \right) $ where $\lambda > 0$.}
+\end{itemize}
+TO Find: Most Powerful level $\alpha$ test for $H_0 : \lambda = \lambda_0$ against $H_1 : \lambda = \lambda_1 \left( >\lambda_0 \right)$
+\newline\newline
+To use Neyman Pearson Lemma, we first need the Likelihood:
+\begin{equation*}
+	\begin{split}
+	L\left( \lambda \right) &= \left(\frac{\lambda^{\sum_{i=1}^{n} x_i}e^{-n\lambda}}{\prod_{i=1}^{n} x_i! } \right)\\
+	\end{split}
+\end{equation*}
+Hence, 
+\begin{equation*}
+	\begin{split}
+		\frac{L\left( \lambda_1 \right) }{L\left( \lambda_0 \right) }  &= \left( \frac{\lambda_1}{\lambda_0} \right) ^{\sum_{i=1}^{n} x_i} \times e^{-n\left( \lambda_1-\lambda_0 \right) }
+	\end{split}
+\end{equation*}
+This implies that,
+\begin{equation*}
+	\begin{split}
+		\frac{L\left( \lambda_1 \right) }{L\left( \lambda_0 \right) } &= \left( \frac{\lambda_1}{\lambda_0} \right) ^{\sum_{i=1}^{n} x_i} \times e^{-n\left( \lambda_1-\lambda_0 \right) } > k\\
+		&\implies \sum_{i=1}^{n} x_i > k_1 \;\; \text{ as $\lambda_1 > \lambda_0$}
+	\end{split}
+\end{equation*}
+Therefore, the M.P. level $\alpha$ test would be:
+\begin{equation*}
+	\begin{split}
+		\varphi\left( x \right) &= \begin{cases}
+			1 & \text{ if } \sum_{i=1}^{n} x_i > k_1\\
+			\gamma & \text{ if } \sum_{i=1}^{n} x_i = k_1\\
+			0 & \text{ if } \sum_{i=1}^{n} x_i <k_1
+		\end{cases}
+	\end{split}
+\end{equation*}
+such that $\mathbb{E}_{\lambda_0} \left[ \varphi\left( x \right)  \right] = \alpha$.
+\newline\newline
+Now, remember that if $X_i \sim P\left( \lambda_i \right) $, then $\sum_{i=1}^{n} X_i =  P\left( \sum_{i=1}^{n} \lambda_i \right) $ 
+\begin{equation*}
+	\begin{split}
+		\mathbb{E}_{\lambda_0} \left[ \varphi\left( x \right)  \right] &= P\left( \sum_{i=1}^{n} X_i > k_1 \right) + \gamma P\left( \sum_{i=1}^{n} X_i = k_1 \right) = \alpha\\
+	\end{split}
+\end{equation*}
+Note that $\sum_{i=1}^{n} X_i \sim P\left( n\lambda_0 \right) = Y$ under $H_0$, hence:
+\begin{equation*}
+	\begin{split}
+		\mathbb{E}_{\lambda_0} \left[ \varphi\left( x \right)  \right] &= P\left( Y > k_1 \right) + \gamma P\left( Y = k_1 \right)   = \alpha\\
+		\text{ Take } \;\; & P\left( Y > k_1 \right) \le  \alpha \le P\left( Y \ge k_1 \right)\\
+		\gamma &= \frac{\alpha - P\left( Y > k_1 \right) }{P\left( Y = k_1 \right) }
+	\end{split}
+\end{equation*}
+\section{Answer 5}
+Given:
+\begin{itemize}
+	\item {$X_1,X_2,\dots,X_n \sim f\left( x;\theta \right) $.}
+	\item{ \[
+				f\left( x;\theta \right) = \theta^{-1}e^{-\frac{x}{\theta}}I_{\left( 0,\infty \right) } \left( x \right) 
+	.\] }
+\item{$\theta >  0$ and  $\alpha \in \left( 0,1 \right) $.}
+\end{itemize}
+To Find: A Likelihood Ratio Test for $H_0 : \theta = \theta_0\left( >0 \right) $ against $H_1 : \theta  \neq \theta_0$.
+\newline\newline
+Firstly, to find $sup_{\theta\in \Theta_0} L\left( \theta,x \right)$:
+\begin{equation*}
+	\begin{split}
+		sup_{\theta \in \Theta_0} L\left( \theta \right) = L\left( x;\theta_0 \right) &=  \theta_0^{-n} e^{-\frac{1}{\theta_0} \sum_{i=1}^{n} x_i} \;\;\text{where  $x_i > 0 \;\;\forall\;\; i \in \left\{ 1,2,\dots,n \right\} $} 
+	\end{split}
+\end{equation*}
+Second, to find $sup_{\theta \in \Theta_0 \cup \Theta_1} L\left( \theta, x\right) $.
+\begin{equation*}
+	\begin{split}
+		sup_{\theta \in \Theta_0 \cup \Theta_1} L\left( \theta, x\right) = L\left( x;\overline{x} \right) &=  \overline{x}^{-n} e^{-\frac{1}{\overline{x}} \sum_{i=1}^{n} x_i} \;\;\text{where  $x_i > 0 \;\;\forall\;\; i \in \left\{ 1,2,\dots,n \right\} $} 
+	\end{split}
+\end{equation*}
+Therefore
+\begin{equation*}
+	\begin{split}
+			\Lambda\left( x \right) &=  \left( \frac{\theta_0}{\overline{x}} \right)^{-n} e^{-\frac{1}{\theta_0}n\overline{x} + n}\\
+			&= \frac{\overline{x}^{n}}{\theta_0^{n}} e^{-\frac{1}{\theta_0} \overline{x}n + n}
+	\end{split}
+\end{equation*}
+Now, we need to analyze this function closely to draw a statistic from $\Lambda\left( x \right) < k$.
+\begin{equation*}
+	\begin{split}
+		\ln \Lambda\left( x \right) &=  n \ln \overline{x} - n \ln \theta_0 - \frac{1}{\theta_0} \left( \overline{x} n  \right) + n\\
+\frac{d}{d\overline{x}} \left( \ln\Lambda\left( x \right)  \right) &=  \frac{n}{\overline{x}} -\frac{n}{\theta_0}\\
+\frac{d^2}{d\overline{x}^2} \left( \ln\Lambda\left( x \right)  \right) &=  -\frac{n}{\overline{x}^2} < 0
+	\end{split}
+\end{equation*}
+Hence, $\Lambda\left( x \right) $ has a maxima at $\overline{x} = \theta_0$.
+\newline\newline
+Therefore, if $\Lambda\left( x \right) < k \implies$ either $\overline{x} <k_1$ or $\overline{x} > k_2$\\
+\newline\newline
+Now, LRT level $\alpha$ can be found as:
+\begin{equation*}
+	\begin{split}
+		\varphi\left( x \right)  = \begin{cases}
+			1 & \text{ if } \sum_{i=1}^{n} x_i < k_1 or \sum_{i=1}^{n} x_i >k_2\\
+			0 & \text{ otherwise} 
+		\end{cases}
+	\end{split}
+\end{equation*}
+where $E_{\Theta_0}\left[ \varphi\left( x \right)  \right] = \alpha$, thus:
+\begin{equation*}
+	\begin{split}
+		E_{\theta_0} \left[ \varphi\left( x \right)  \right] &= P\left( \sum_{i=1}^{n} X_i < k_1 or \sum_{i=1}^{n} X_i >k_2\ \right)\\
+		&= P\left( \sum_{i=1}^{n} X_i < k_1 \right) + P\left( \sum_{i=1}^{n} X_i > k_2 \right)\\
+	\end{split}
+\end{equation*}
+Now, note that $X_i \sim Exp\left( \frac{1}{\theta} \right) $, thus $\sum_{i=1}^{n} X_i = Y = Gamma\left( n, \frac{1}{\theta} \right) $
+\newline\newline
+Which will translate to
+\begin{equation*}
+	\begin{split}
+		P\left( Y < k_1 \right) + P\left( Y > k_2  \right) = \alpha		
+	\end{split}
+\end{equation*}
+We can choose these two probabilities as simply:
+\begin{equation*}
+	\begin{split}
+		P\left( Y < k_1 \right) &=  \frac{\alpha}{2}\\
+P\left( Y > k_2 \right) &= \frac{\alpha}{2}
+	\end{split}
+\end{equation*}
+as there are no restrictions on each of them, the only constraint is their sum is $=\alpha$.
+ \newline\newline
+ Hence,
+\begin{equation*}
+	\begin{split}
+		k_1 &=  G_{k_1;\frac{\alpha}{2}}\\
+		k_2 &= G_{k_2;1 - \frac{\alpha}{2}}
+	\end{split}
+\end{equation*}
+\end{document}
+
+

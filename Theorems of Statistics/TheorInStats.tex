@@ -1,0 +1,132 @@
+%        File: TheorInStats.tex
+%     Created: Mon May 11 07:00 PM 2020 I
+% Last Change: Mon May 11 07:00 PM 2020 I
+%
+\documentclass[a4paper]{article}
+
+\usepackage{amsfonts}
+
+\title{Theorems In Statistics}
+\author{Animesh Renanse}
+\date{May 11, 2020}
+
+\begin{document}
+\maketitle
+\newpage
+
+
+\section{The Triads of  Statistics}
+
+The three important theorems of mathematical statistics are\footnote{As per my thinking}.
+
+\subsection{Strong Law of Large Numbers}
+
+\textit{Given that $\left\{ X_n \right\} $ is a sequence of i.i.d. Random Variables and define $\overline{X_n} = \frac{1}{n}\sum_{i=1}^{n} X_i$, then we have the following result:}
+\[
+		\left\{ \overline{X_n} \right\}	\to \mu 	
+.\]
+
+\textit{almost surely/with probability 1}.
+
+
+\textbf{Proof:} Since we need to show that $\left\{ \overline{X_n} \right\} \to \mu $ with probability 1, or, we can show that:
+
+\[
+		P \left[  \mid \overline{X_n}- \mu  \mid >  \epsilon  \right] \to  0
+\]		
+Now we can Chebyshev's Inequality to get:
+\[
+	P \left[  \mid \overline{X_n} - \mu  \mid > \epsilon \right] \le \frac{Var(\overline{X_n})}{\epsilon^{2}} 
+.\] 
+
+Note that $Var(\overline{X_n})$ is equal to $\frac{\sigma^2}{n}$, therefore, we can write that:
+\[
+	P \left[  \mid \overline{X_n} - \mu  \mid > \epsilon \right] \le \frac{\sigma^2}{n\epsilon^{2}} 
+.\] 
+
+To that $\frac{\sigma^2}{n\epsilon^2} \to 0$, therefore $P \left[  \mid \overline{X_n} - \mu  \mid  \right] \to 0 $.
+Hence Proved.
+
+
+\subsection{Central Limit Theorem}
+\textit{Given that $\left\{ X_n \right\} $ be a sequence of i.i.d. Random variables with finite  $\mu$ and finite $\sigma^{2}$, it can be shown that,}
+\[
+P \left( \frac{\sqrt{n}\left( \overline{X_n} - \mu \right) } {\sigma}\le a \right) \to \int_{-\infty}^{a} \frac{1}{\sqrt{2\pi}} \exp \left(-\frac{t^2}{2}\right) dt
+.\]
+
+\textit{OR,}
+\[
+	\frac{\sqrt{n} \left( \overline{X_n}- \mu \right) }{\sigma} \to N(0,1)
+.\] 
+
+
+\subsection{Sampling Distributions}
+\textit{Let $X_1, X_2, \dots X_n$ be i.i.d. Random variables, it can then be shown that}
+\[
+	\overline{X_n} \sim N(\mu,\frac{\sigma^2}{n})
+.\] 	
+\textit{and}
+\[
+	\frac{\left( n-1 \right) S^2}{\sigma^2} \to  \chi^2_{n-1}
+.\]
+\textit{where, $\overline{X_n}$ and $S^2$ are}
+\[
+	\overline{X_n} = \frac{1}{n}\sum_{i = 1}^{n} X_i
+.\] 	
+\textit{and}	
+\[
+	S^2 = \frac{1}{n-1} \sum_{i = 1}^{n} \left( X_i - \overline{X_n}\right) 
+.\]
+\textit{In other words, one can say that Sample Mean follows a Normal Distribution with mean as that of Population itself and variance exactly equal to $\frac{\sigma^2}{n}$ and the Sample Variance follows a $\chi^2_{n-1}$ distribution.}
+
+\
+
+
+\section{Estimation}
+
+\subsection{Unbiased Estimators}
+\textit{A statistic $T(X)$ is said to be unbiased estimator of $g(\theta)$ if,}
+\[
+	\mathbb{E}_\theta \left[ T(X)  \right] = g(\theta) 
+.\] 
+\textit{for all $\theta$ in  $\Theta$}.
+
+\textit{Also, if $\mathbb{E}_\theta \left[ T(X) \right]  = g(\theta) + b(\theta)$, then we can say that  $\mathbb{E}_\theta [T(X)]$ is a biased estimator of $g(\theta)$ .}
+
+
+\subsection{Consistent Estimator}
+\textit{A statistic $T_n(\theta) = T(\theta)$ is said to be consistent estimator for $g(\theta)$ if for every $\epsilon > 0$,}
+\[
+	P\left[  \mid T_n - g(\theta)  \mid  > \epsilon \right] \to  0 
+.\] 
+\textit{which is, in the long run, the value of estimator and the estimand comes infinitesimally close to each other.}
+
+Note that checking whether any given estimator for $g(\theta)$ is consistent or not is not an easy task, to help us with it we have some useful theorems:
+\newline\newline\newline
+\textbf{Theorem 1:-} 
+\textit{If $\mathbb{E} \left[ T_n \right]  = \theta_n \to  \theta$ and $Var(T_n) = \sigma^2_n \to  0$ as $n \to \infty$ then $T_n$ is a consistent estimator for $\theta$}.
+\newline\newline
+\textbf{Proof:}
+
+We can write, 
+\[
+		  \mid T_n - \theta  \mid \le\mid T_n - \theta_n  \mid  + \mid \theta_n - \theta \mid  
+.\] 
+
+\[
+	P\left( \mid T_n - \theta  \mid > \epsilon \right) \le P \left(  \mid T_n - \theta_n \mid  +  \mid \theta_n - \theta  \mid > \epsilon \right) 
+\]
+
+or,
+
+\[
+	P \left(  \mid T_n -  \theta \mid > \epsilon \right) \le P\left(  \mid T_n - \theta_n  \mid > \epsilon -  \mid \theta_n - \theta  \mid   \right)  
+.\] 
+Using Chebyshev's Inequality,
+\[
+	P \left( \mid T_n - \theta_n    \mid > \epsilon \right) \le  P\left(  \mid T_n - \theta_n  \mid > \epsilon -  \mid \theta_n - \theta  \mid   \right) \le \frac{\sigma^2_n}{ (\epsilon - \mid \theta_n - \theta \mid)^2 } \to 0
+.\] 
+Hence proved.
+\end{document}
+
+

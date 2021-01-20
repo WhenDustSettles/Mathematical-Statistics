@@ -1,0 +1,536 @@
+%        File: PS8Attempt.tex
+%     Created: Fri May 22 04:00 PM 2020 I
+% Last Change: Fri May 22 04:00 PM 2020 I
+%
+\documentclass[a4paper]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{MA212M-Mathematical Statistics}
+\lhead{Assignment 8}
+\rfoot{Page \thepage}
+
+
+\title{Assignment 8 - MA212M}
+\author{Animesh Renanse}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\newpage
+\section{Answer 1}
+Given:
+\begin{itemize}
+	\item {$\left( X,Y \right) \sim N_2\left( \mathbf{\mu},\Sigma \right) $}
+	\item{$Var\left( X \right) = Var\left( Y \right)  $}
+\end{itemize}
+To show that $X+ Y$ and $X-Y$ are independent.
+ \newline\newline
+ If we can show that $Cov\left( X+Y,X-Y \right) =0$, then it'll prove that $X+Y$ and  $X-Y$ are independent.
+ \newline\newline
+ First of all, using the fact that variance is same for both,
+ \begin{equation}
+ 	\begin{split}
+ 		\mathbb{E}\left[ \left( X - \mathbb{E}\left( X \right)  \right) ^{2} \right] &=  \mathbb{E}\left[ \left( Y - \mathbb{E}\left( Y \right)  \right) ^{2} \right]\\
+		\mathbb{E}\left[ X^2 \right] - \mathbb{E}\left[ X \right]^2 &=  \mathbb{E}\left[ Y^2 \right] - \mathbb{E}\left[ Y \right] ^2 
+	\end{split}
+ \end{equation}
+ Now, expanding the $Cov\left( X+Y, X-Y \right) $
+ \begin{equation*}
+ 	\begin{split}
+		Cov\left( X+Y, X-Y \right) &= \mathbb{E}\left[ \left( X+Y-\mathbb{E}\left( X+Y \right)  \right) \left( X-Y- \mathbb{E}\left( X-Y \right) \right)  \right]\\
+		&= \mathbb{E}\left[ \left( X+Y \right) \left( X-Y \right)  \right] - \mathbb{E}\left[ X+Y \right] \mathbb{E}\left[ X-Y \right]\\
+	&= 	\mathbb{E}\left( X^2 \right) - \mathbb{E}\left[ Y^2 \right] - \mathbb{E}\left[ X \right] ^2 - \mathbb{E}\left[ Y \right] ^2\\
+	&= 0 \text{ Using (1)}
+ 	\end{split}
+ \end{equation*}
+ Hence proved that $X+Y $ and  $ X-Y$ are independent.
+
+ \section{Answer 2}
+ Since we have a Bi variate Normal distribution therefore, after using the definition of correlation coefficient  $\rho$, we get:
+ \begin{equation*}
+ 	\begin{split}
+ 		\mu &= \begin{bmatrix} 0\\-1 \end{bmatrix}\\
+		\Sigma &=  \begin{bmatrix} 1&-1\\-1&4 \end{bmatrix}  
+	\end{split}
+ \end{equation*}
+ \subsection{Answer 2.a}
+ We know that if $\mathbf{u} = \left( a,b \right) \in \mathbb{R}^{2}/ \left( 0,0 \right)$ and $\mathbf{X} \sim BND$, then
+\[	
+	\mathbf{u}^{T}\mathbf{X} \sim N\left( \mathbf{u}^{T}\mathbf{\mu}, \mathbf{u}^{T}\Sigma\mathbf{u} \right) 
+.\] 
+Hence, if we let $\mathbf{u}^{T} = \begin{bmatrix} 1,1 \end{bmatrix} $, then, we'll get:
+\begin{equation*}
+	\begin{split}
+		X + Y &\sim N\left( 0-1, \begin{bmatrix} 1,1 \end{bmatrix} \begin{bmatrix} 1&-1\\-1&4 \end{bmatrix} \begin{bmatrix} 1\\1 \end{bmatrix}  \right)\\
+		&\sim N\left( -1,3 \right) 
+	\end{split}
+\end{equation*}
+Therefore, $P\left( X+Y > 0 \right) $ becomes,
+\begin{equation*}
+	\begin{split}
+		X+Y = Z&\sim N\left( -1,3 \right) \\
+		\frac{Z+1}{\sqrt{3} }&\sim N\left( 0,1 \right) 
+	\end{split}
+\end{equation*}	
+therefore, if $X+Y > 0$, then  $Z > \frac{1}{\sqrt{3} }$, hence
+\[
+P\left( X+Y>0 \right) = P\left( Z > \frac{1}{\sqrt{3} } \right) = 1-\Phi\left( \frac{1}{\sqrt{3} } \right) 
+.\]
+\subsection{Answer 2.b}
+If $aX+ Y $ and $X+2 Y$ are independent, then if we can show that $Cov\left( aX+Y, X+2Y \right) = 0$, that will prove that they are independent.
+\begin{equation*}
+	\begin{split}
+		Cov\left( aX+Y, X+2Y \right) &= \mathbb{E}\left[ \left( aX+Y \right) \left( X+2Y \right)  \right] - \mathbb{E}\left[ aX+Y \right] \mathbb{E}\left[ X+2Y \right]\\
+		&= \mathbb{E}\left[ aX^2 + 2aXY + XY + 2Y^2 \right] - a\mathbb{E}\left[ X \right] ^2 - 2a\mathbb{E}\left[ X \right] \mathbb{E}\left[ Y \right] - \mathbb{E}\left[ X \right] \mathbb{E}\left[ Y \right] - 2\mathbb{E}\left[ Y \right] ^2\\
+		&= a\left( \mathbb{E}\left( X^2 \right) - \mathbb{E}\left[ X \right] ^2 \right)
+	+ (2a+1)\left( \mathbb{E}\left[ XY \right] - \mathbb{E}\left[ X \right] \mathbb{E}\left[ Y \right]  \right) + 2\left( \mathbb{E}\left[ Y^2 \right] - \mathbb{E}\left[ Y \right] ^2 \right) \\
+	&= a\left( Var\left( X \right)  \right) + \left( 2a+1 \right) Cov\left( X,Y \right) + 2Var\left( Y \right)\\
+	&= a\times 1 + \left( 2a+1 \right) \times -1 + 2\times 4
+	\end{split}
+\end{equation*}
+to be independent, this should be zero, hence:
+\begin{equation*}
+	\begin{split}
+		 a\times 1 + \left( 2a+1 \right) \times -1 + 2\times 4 &=  0\\
+		 -a -1 + 8 &= 0\\
+		 a = 7
+	\end{split}
+\end{equation*}
+\subsection{Answer 2.c}
+\begin{equation*}
+	\begin{split}
+		\begin{pmatrix} X + Y\\ 2X-Y \end{pmatrix} \sim N_2\left( \mu_1, \mu_2, \sigma_1,\sigma_2,\rho  \right) 
+	\end{split}
+\end{equation*}
+where,
+\begin{equation*}
+	\begin{split}
+		\mu_1 &=  \begin{bmatrix} 1,1 \end{bmatrix} \begin{bmatrix} 0\\-1 \end{bmatrix}\\ 
+		\mu_2 &=  \begin{bmatrix} 2,-1 \end{bmatrix} \begin{bmatrix} 0\\-1 \end{bmatrix}\\
+		\sigma_1 &=  Var\left( X+Y \right) = Var\left( X \right) + Var\left( Y \right) + 2 Cov\left( X,Y \right) = 1 + 4 -2=3\\
+		\sigma_2 &= Var\left( 2X,-Y \right) = 4+4+4 = 12\\
+		\rho &= \frac{Cov\left( X+Y,2X-Y \right) }{\sqrt{Var\left( X+Y \right) Var\left( 2X-Y \right) } } = \frac{2Var\left( X \right) -Cov\left( X,Y \right) + 2Cov\left( X,y \right) -Var\left( Y \right) }{\sqrt{3\times 12} } = -\frac{1}{2}
+	\end{split}
+\end{equation*}
+Then, we can represent $f_{X_1 \mid X_2}\left( x_1|x_2 \right) $ as:
+\begin{equation*}
+	\begin{split}
+		f_{X_1 \mid X_2} \left( x_1 \mid x_2  \right)  = \frac{1}{\sigma_{1 \mid 2}\sqrt{2\pi} } \exp\left[ -\frac{1}{2}\left( \frac{x_1 - \mu_{1 \mid 2}}{\sigma_{1 \mid 2}} \right) ^2 \right] \forall x_1 \in \mathbb{R}\\
+		\text{where,}
+		\end{split}
+\end{equation*}
+\begin{equation*}
+	\begin{split}
+		\mu_{1|2} &=  \mu_1 + \rho\frac{\sigma_1}{\sigma_2}\left( x_2 - \mu_2 \right) \\
+		\sigma_{1|2}^2 &=  \sigma_1^2\left( 1-\rho^2 \right) 
+	\end{split}
+\end{equation*}
+\section{Answer 3}
+Given 
+\begin{equation*}
+	\begin{split}
+		\mu_x &=  0\\
+		\sigma_{x}^2 &= 1\\
+		\mu_y &=  0\\
+		\sigma_{y}^2 &= 1\\
+		\text{ Correlation Coefficient} &= \rho 
+	\end{split}
+\end{equation*}
+To find: $\mathbb{E}\left[ X^2Y^2 \right] $
+\newline\newline
+We can use the fact that $\mathbb{E}\mathbb{E}\left[ X \mid Y \right] = \mathbb{E}\left[ X \right] $  
+\newline\newline
+\begin{equation*}
+	\begin{split}
+		\mathbb{E}\left[ \mathbb{E}\left( X^2Y^2  \mid Y\right)  \right]=\mathbb{E}\left[ X^2Y^2 \right]  &=  \mathbb{E}\left[ Y^2\mathbb{E}\left[ X^2 \mid Y \right]  \right]\\
+		&= \mathbb{E}\left[ Y^2\left\{ Var\left( X|Y \right) + \mathbb{E}\left[ X|Y \right] ^2 \right\}  \right]\\
+		&= \mathbb{E}\left[ Y^2\left\{ 1\left( 1- \rho^2 \right) + 0 + \left( \rho Y \right) ^2 \right\}  \right]\\
+		&= \left( 1-\rho^2 \right) \mathbb{E}\left[ Y^2 \right] + \rho^2\mathbb{E}\left[ Y^4 \right] 
+	\end{split}
+\end{equation*}
+We can easily find $\mathbb{E}\left[ Y^2 \right] $ as it is equal to $Var\left( Y \right) + \mathbb{E}\left[ Y \right] ^2 = 0 +1^2 = 1$
+\newline\newline
+To find $\mathbb{E}\left( Y^{4} \right) $, knowing that $Y \sim N\left( 0,1 \right) $, we get:
+\begin{equation*}
+	\begin{split}
+		\mathbb{E}\left[ Y^{4} \right] &= \int_{-\infty}^{\infty} y^{4} \frac{1}{\sqrt{2\pi} } e^{-\frac{y^2}{2}} dy\\
+		&= \frac{2}{\sqrt{2\pi} }\int_0^{\infty} y^{4}e^{-\frac{y^2}{2}}dy  
+	\end{split}
+\end{equation*}
+let $\frac{y^2}{2} = t$, therefore, $dt = ydy$, hence,
+ \begin{equation*}
+	\begin{split}
+		&= \frac{2}{\sqrt{2\pi} } \int_0^{\infty} y^{4} e^{-t} \frac{dt}{y}\\
+		&= \frac{2}{\sqrt{2\pi} } \int_0^{\infty} y^{3} e^{-t} dt\\
+		&= \frac{2}{\sqrt{2\pi} } \int_0^{\infty} \left( 2t \right) ^{\frac{3}{2}} e^{-t}dt\\
+		&= \frac{4}{\sqrt{\pi} } \int_0^{\infty} t^{\frac{3}{2}} e^{-t}dt\\
+		&= \frac{4}{\sqrt{\pi} } \Gamma\left( \frac{5}{2} \right) 
+	\end{split}
+\end{equation*}
+Therefore, $\mathbb{E}\left[ X^2Y^2 \right] $ is:
+\begin{equation*}
+	\begin{split}
+		\mathbb{E}\left[ X^2Y^2 \right] &=  1 - \rho^2 + \frac{4\rho^2}{\sqrt{\pi} } \Gamma\left( \frac{5}{2} \right)\\
+		&=  1- \rho^2 + \frac{4\rho^2}{\sqrt{\pi} } \frac{3}{2}\times \frac{1}{2}\times \sqrt{\pi}\\
+		&=  1 + 2\rho^2
+	\end{split}
+\end{equation*}
+\section{Answer 4}
+Given:
+\begin{equation*}
+	\begin{split}
+		\mathbf{\mu} = \begin{bmatrix} 5\\10 \end{bmatrix} \text{ , } \Sigma = \begin{bmatrix} 1 & 5\rho \\ 5\rho & 25 \end{bmatrix} 
+	\end{split}
+\end{equation*}
+where $\rho > 0$ is the correlation coefficient.
+\newline\newline
+Also, we know that,
+\[
+	p\left( 4 < Y < 16  \mid  X = 5 \right) = 0.954
+.\]
+Now, to find $P\left( Y \mid X \right) $,
+\begin{equation*}
+	\begin{split}
+	\mu_{Y \mid X} &= 10 + 5\rho\left( x - 5 \right)  \\
+	\sigma_{Y \mid X}^2&= 25\left( 1- \rho^2 \right) 
+	\end{split}
+\end{equation*}
+\begin{equation*}
+	\begin{split}
+	f_{Y \mid X}\left( Y | X = x\right) &= \frac{1}{25\left( 1-\rho^2 \right) } \exp\left[ -\frac{1}{2}\left( \frac{(y - 10 - 5\rho\left( x-5 \right) )^2}{25\left( 1-\rho^2 \right) } \right)  \right] 	
+	\end{split}
+\end{equation*}
+Therefore, 
+\begin{equation*}
+	\begin{split}
+		Y  \mid X = 5 = Z &\sim N\left( 10, 25\left( 1-\rho^2 \right)  \right) \\
+		\frac{Z - 10}{5\sqrt{1-\rho^2} } &\sim N\left( 0,1 \right) 
+	\end{split}
+\end{equation*}
+Therefore, if $4< Z < 16$, then, $\frac{-6}{5\sqrt{1-\rho^2} } < \frac{Z - 10}{5\sqrt{1-\rho^2} } < \frac{6}{5\sqrt{1-\rho^2}  }$ .
+\newline\newline
+Let $c = \frac{6}{5\sqrt{1-\rho^2} }$, then,
+\begin{equation*}
+	\begin{split}
+		P\left( 4 <Z < 16 \right) &=  2\Phi\left( \frac{6}{5\sqrt{1-\rho^2} } \right) - 1= 0.954\\ 
+		&\implies \Phi\left( \frac{6}{5\sqrt{1-\rho^2} } \right)  = 0.977 
+	\end{split}
+\end{equation*}
+Thus, 
+\begin{equation*}
+	\begin{split}
+		\frac{6}{5\sqrt{1-\rho^2} } &= \Phi^{-1}\left( 0.977 \right) \approx 2\\
+		&\implies \rho^2 = 1 - \frac{9}{25}\\
+		&= \rho^2 = \frac{16}{25} \\
+		&\implies \rho = \frac{4}{5}
+	\end{split}
+\end{equation*}
+\section{Answer 5}
+Since $\rho = 0$, therefore,  $X$ and $Y$ are independent.
+\newline\newline
+Since both $X $ and  $Y$ are standard normal, therefore we can write: 
+\begin{equation*}
+	\begin{split}
+		P\left( -c < X<c, -c< <Y<c \right) &= P\left( -c<X<c \right) P\left( -c<Y<c \right) \\
+		&=  \left( 2\Phi\left( c \right) -1 \right) ^2 = 0.95\\
+		&\implies \Phi\left( c \right) = 0.98734\\
+		&\implies c \approx 2.24 
+	\end{split}
+\end{equation*}
+
+\section{Answer 6}
+Each velocity component is a random variable 
+\begin{equation*}
+	\begin{split}
+		V_x, V_y, V_z \sim N\left( 0,\frac{kT}{m} \right)\\
+		\sqrt{ \frac{m }{kT}} V_x, \sqrt{ \frac{m }{kT}} V_y, \sqrt{  \frac{m }{kT}} V_z \sim N\left( 0,1 \right) 
+	\end{split}
+\end{equation*}
+To find: PDF of the velocity $V = \sqrt{V_x^2 + V_y^2 + V_z^2} $ 
+\newline\newline
+We know that sum of squares of $n$ Random variables from Standard Normal forms $\chi_n^2$ distribution, i.e.
+\begin{equation*}
+	\begin{split}
+		\frac{m}{kT}V_x^2 + \frac{m}{kT}V_y^2 + \frac{m}{kT}V_z^2 &\sim \chi_n^2\\
+		V_x^2 + V_y^2 +V_z^2 &\sim \frac{kT}{m}\chi_n^2 
+	\end{split}
+\end{equation*}
+Since we need distribution of $\sqrt{V_x^2 + V_y^2 + V_z^2}$, therefore, effectively, we need the PDF of $\sqrt{\frac{kT}{m} \chi_n^2} $.
+\newline\newline
+Remember, if $V \sim \chi_n$ distribution, then:
+\begin{equation*}
+	\begin{split}
+		f_V\left( v \right) = \frac{1}{2^{\frac{n}{2}-1}\Gamma\left( \frac{n}{2} \right) } v^{n-1}e^{-\frac{v^2}{2}}	
+	\end{split}
+\end{equation*}
+where $v \in [0,\infty)$.
+\newline\newline
+Therefore, $\sqrt{\frac{m}{kT}}\sqrt{V_x^2 + V_y^2 + V_z^2}  $ will follow,
+\begin{equation*}
+	\begin{split}
+		f_Z\left( z \right) = \frac{1}{\sqrt{2}\Gamma\left( \frac{3}{2} \right)  } \left( \sqrt{\frac{m}{kT}} z  \right) ^{2} e^{-\frac{m}{2kT}z^2} 
+	\end{split}
+\end{equation*}
+only if $z \in [0,\infty]$, else 0.
+\newpage
+\section{Answer 7}
+Given (let $W$ denote wife's Random Variable and  $H$ denote husband's Random Variable)
+\begin{equation*}
+	\begin{split}
+		\mu_W &=  66.8 \text{, } \sigma_W = 2\\
+		\mu_H &= 70 \text{, } \sigma_H = 2\\
+		\rho &= 0.68
+	\end{split}
+\end{equation*}
+To find: $P\left( W > H \right) $
+\newline\newline
+Therefore, we need to find the distribution of $W - H$, to do that, we can use the fact that linear combination of the R.V.s in a BND also follows a Normal Distribution.
+ \newline\newline
+ Here, $\mathbf{u}^{T} = \begin{bmatrix}  1,-1 \end{bmatrix}, \mathbf{\mu} = \begin{bmatrix} 66.8\\70 \end{bmatrix} \text{ and }\Sigma = \begin{bmatrix} 4 & 2.72\\2.72&4 \end{bmatrix}  $.
+ \newline\newline
+ Since $\begin{pmatrix} W\\H \end{pmatrix} \sim N_2\left( \mathbf{\mu}, \Sigma \right) $, therefore:
+ \begin{equation*}
+ 	\begin{split}
+		\mathbf{u}^{T} \mathbf{X} &\sim N_2\left( \mathbf{u}^{T}\mathbf{\mu}, \mathbf{u}^{T}\Sigma\mathbf{u} \right)\\
+		W - H &\sim N_2\left( \begin{bmatrix} 1&-1 \end{bmatrix} \begin{bmatrix} 66.8\\70 \end{bmatrix} , \begin{bmatrix} 1&-1 \end{bmatrix} \begin{bmatrix} 4&2.72\\2.72&4 \end{bmatrix} \begin{bmatrix} 1\\-1 \end{bmatrix}  \right)\\
+	W-H	&\sim N_2\left( -3.2,2.56 \right)\\
+	\frac{W-H+3.2}{\sqrt{2.56} } &\sim N_2\left( 0,1 \right)\\
+	\frac{Z+3.2}{1.6} &\sim N_2\left( 0,1 \right) 
+ 	\end{split}
+ \end{equation*}
+ where $Z = W-H$.
+ \newline\newline
+ Therefore, if $W-H > 0$, then  $Z > 2$.
+\newline\newline
+Hence,
+\begin{equation*}
+	\begin{split}
+		P\left( W- H > 0 \right) = P\left( Z >  2 \right) &= 1-\Phi\left( 2 \right)\\
+		&= 1 - 0.977= 0.023
+	\end{split}
+\end{equation*}
+\newpage
+
+\section{Answer 8}
+Given:
+\begin{equation*}
+	\begin{split}
+		\begin{pmatrix} X\\Y \end{pmatrix} \sim N_2\left( \mathbf{\mu}, \Sigma \right)\\
+		\mu_x = 1 \text{ and } \sigma_x = 2\\
+		\mathbb{E}\left[ Y \mid X \right] = 3X+7\\
+		\mathbb{E}\left[ \left( Y - \mathbb{E}\left[ Y \mid X \right]  \right) ^2 \right] = 28
+		\end{split}
+\end{equation*}
+First of all, to get $\mu_y$:
+ \begin{equation*}
+\begin{split}
+		\mathbb{E}\left[ Y \right] &=  \mathbb{E}\left[ \mathbb{E}\left[ Y  \mid  X \right]  \right]\\
+	&= \mathbb{E}\left[ 3X+7 \right]\\
+	&= 3\mathbb{E}\left[ X \right] + 7\\
+	&= 3\times 1 +7 = 10
+\end{split}
+\end{equation*}
+Now, to find $Var\left( Y \right) $:
+\begin{equation*}
+	\begin{split}
+		\mathbb{E}\left[ \left( Y - \mathbb{E}\left[ Y \mid X \right]  \right) ^2 \right] &= \mathbb{E}\left[ \mathbb{E} \left[\left( Y - \mathbb{E}\left[ Y|X \right]  \right) ^2 | X\right] \right] \\
+		&= \mathbb{E}\left[ Var\left( Y \mid X \right)  \right]  \\
+		&= \mathbb{E}\left[ \sigma_y^2\left( 1- \rho^2 \right)  \right]\text{  (because $X\text{ and }Y$ are in BND)}\\
+		&= \sigma_y^2\left( 1-\rho^2 \right) = 28 
+	\end{split}
+\end{equation*}
+Now, $\mathbb{E}\left[ Y \mid X = x \right] = 3x+7$, also, $\mathbb{E}\left[ Y \mid X = x \right] = \mu_y + \rho \frac{\sigma_y}{\sigma_x}\left( x - \mu_x \right) $.
+\newline\newline
+Hence,
+\begin{equation*}
+	\begin{split}
+		10 + \rho \frac{\sigma_y}{2} \left( x - 1 \right) &= 3x+7\\
+		&\implies \rho \frac{\sigma_y}{2} = 3\\
+		&\implies\rho\sigma_y = 6
+	\end{split}
+\end{equation*}
+Using above equation to get $\sigma_y$ as follows:
+ \begin{equation*}
+\begin{split}
+		\sigma_y^2 - \left( \rho\sigma_y \right) ^2 &=  28\\
+	\sigma_y^2 &=  64\\
+	\sigma_y &=  8
+\end{split}
+\end{equation*}
+For $\rho$,
+ \begin{equation*}
+	\begin{split}
+		\rho\sigma_y &= 6\\
+		&\implies \rho = \frac{6}{8} = 0.75
+	\end{split}
+\end{equation*}
+\section{Answer 9}
+Given:
+\begin{equation*}
+\begin{split}
+	X_1,X_2,\dots,X_n &\overset{i.i.d.}{\sim} N\left( 0,1 \right) \\
+Y &=  \sum_{i=1}^{n} X_i^2
+\end{split}
+\end{equation*}
+To find: $\mathbb{E}\left[ Y \right] $ and $Var\left( Y \right) $.
+\newline\newline
+First of all, to find $\mathbb{E}\left[ Y \right] $, note that,:
+\begin{equation*}
+	\begin{split}
+		\mathbb{E}\left[ Y \right] &= \sum_{i=1}^{n} \mathbb{E}\left[ X_i^2 \right] 
+	\end{split}
+\end{equation*}
+therefore, to find $\mathbb{E}\left[ X_i^2 \right] $:
+\begin{equation*}
+	\begin{split}
+		\mathbb{E}\left[ X_i^2 \right] &=  Var\left( X_i \right) + \mathbb{E}\left[ X_i \right] ^2\\
+		&= 1 + 0^2 = 1
+	\end{split}
+\end{equation*}
+Hence,
+\begin{equation*}
+	\begin{split}
+		\mathbb{E}\left[ Y \right] &= n 
+	\end{split}
+\end{equation*}
+ To find $Var\left( Y \right) $, first note that since $X_i$ and  $X_j$ are independent for  $i\neq j$, thus $Cov\left( X_i, X_j \right) = 0$, which implies that:
+\begin{equation*}
+	\begin{split}
+		Var\left( Y \right) = \sum_{i=1}^{n} Var\left( X_i^2 \right) 
+	\end{split}
+\end{equation*}
+Now we can easily find the variance of $Y$:
+\begin{equation*}
+	\begin{split}
+		Var\left( X_i^2 \right)  &= \mathbb{E}\left[ X_i^4 \right] -\mathbb{E}\left[ X_i^2 \right] ^2\\
+		&= \int_{-\infty}^{\infty} \frac{1}{\sqrt{2\pi} } x^{4}e^{-\frac{x^2}{2}} dx - 1\\
+		&= \frac{2}{\sqrt{2\pi} } \int_0^{\infty} x^{4 }e^{-\frac{x^2}{2}} dx - 1
+	\end{split}
+\end{equation*}
+Let $\frac{x^2}{2} = t$, therefore $xdx = dt$
+\begin{equation*}
+	\begin{split}
+		&= \frac{2}{\sqrt{2\pi} } \int_0^{\infty} \left( 2t \right) ^{\frac{3}{2}} e^{-t}dt - 1\\
+		&= \frac{4}{\sqrt{\pi} } \int_0^{\infty} t ^{\frac{3}{2}} e^{-t}dt - 1\\
+		&= \frac{4}{\sqrt{\pi} } \Gamma\left( \frac{5}{2} \right) -1\\
+		&= \frac{4}{\sqrt{\pi} } \frac{3}{2}\times \frac{1}{2}\times \sqrt{\pi} - 1\\
+		&= 2
+	\end{split}
+\end{equation*}
+Hence, 
+\begin{equation*}
+	\begin{split}
+		Var\left( Y \right) = 2n
+	\end{split}
+\end{equation*}
+\section{Answer 10}
+Given:
+ \begin{equation*}
+	\begin{split}
+		X&\sim\chi^2_n\\
+		Y&\sim N\left( 0,1 \right)\\
+		Cov\left( X,Y \right) &= 0
+	\end{split}
+\end{equation*}
+To find: Distribution of $T = \frac{Y}{\sqrt{\frac{X}{n}}}$ 
+\newline\newline
+Since $X$ and $Y$ are independent, therefore, $f_{X,Y} \left( x,y \right)$ can be found easily as follows:
+\begin{equation*}
+	\begin{split}
+		f_{X,Y} \left( x,y \right) &= f_X\left( x \right) f_Y\left( y\right)\\
+		&= \frac{1}{2^{\frac{n}{2}}\Gamma\left( \frac{n}{2} \right) } x^{\frac{n}{2}-1}e^{-\frac{x}{2}} \times \frac{1}{\sqrt{2\pi} }e^{-\frac{y^2}{2}} \text{ for all $x>0$ and $y \in  \mathbb{R}$}
+	\end{split}
+\end{equation*}
+Now, $X = V$ and thus let $Y = T\sqrt{\frac{V}{n}} $. Therefore, we would like to find  $f_{T,V}\left( t,v \right) $ 
+\begin{equation*}
+	\begin{split}
+		f_{T,V}\left( t,v \right) &= \frac{1}{2^{\frac{n}{2}}\Gamma\left( \frac{n}{2} \right) } v^{\frac{n}{2}-1}e^{-\frac{v}{2}} \times \frac{1}{\sqrt{2\pi} } e^{-t^2 \frac{v}{n}} 
+	\end{split}
+\end{equation*}
+Now, to get $f_T\left( t \right) $, note that $J$ here is the Jacobian and $J = \sqrt{\frac{v}{n}} $:
+\begin{equation*}
+	\begin{split}
+		f_t\left( t \right) &= \int_{-\infty}^{\infty} f_{T,V}\left( t,v \right) \sqrt{\frac{v}{n}}  dv\\
+		&= \frac{1}{2^{\frac{n+1}{2}}\Gamma\left( \frac{n}{2} \right) \sqrt{\pi} }\int_{0}^{\infty} v^{\frac{n}{2}-1} e^{-\frac{v}{2}} e^{-t^2 \frac{v}{2n}}\left( \frac{v}{n} \right) ^{\frac{1}{2}}dv\\
+		&= \frac{1}{2^{\frac{n+1}{2}}\Gamma\left( \frac{n}{2} \right) \sqrt{\pi n} } \int_{0}^{\infty} v^{\frac{n-1}{2}} e^{-\frac{v}{2}\left( 1+\frac{t^2}{n} \right) }dv\\
+	\end{split}
+\end{equation*}
+Let $u = \frac{v}{2}\left( 1+\frac{t^2}{n} \right) $, therefore $\frac{1}{2}\left( 1+\frac{t^2}{n} \right) dv = du$,
+\begin{equation*}
+	\begin{split}
+				&= \frac{1}{2^{\frac{n+1}{2}}\Gamma\left( \frac{n}{2} \right) \sqrt{\pi n} } \int_{0}^{\infty} \frac{2}{1+\frac{t^2}{n}} \left( \frac{2u}{1+\frac{t^2}{n}} \right) ^{\frac{n-1}{2}} e^{-u} du\\
+						&= \frac{1}{2^{\frac{n+1}{2}}\Gamma\left( \frac{n}{2} \right) \sqrt{\pi n} }  \left( \frac{2}{1+\frac{t^2}{n}} \right)^{\frac{n+1}{2}} \int_{0}^{\infty} u^{\frac{n-1}{2}}e^{-u}du\\
+&= \frac{1}{2^{\frac{n+1}{2}}\Gamma\left( \frac{n}{2} \right) \sqrt{\pi n} }  \left( \frac{2}{1+\frac{t^2}{n}} \right)^{\frac{n+1}{2}} \Gamma\left( \frac{n+1}{2} \right) \\
+&= \frac{\Gamma\left( \frac{n+1}{2} \right) }{\Gamma\left( \frac{n}{2} \right) \sqrt{\pi n} }\left( 1+ \frac{t^2}{n} \right) ^{- \frac{n+1}{2}}
+	\end{split}
+\end{equation*}
+
+\newpage
+\section{Answer 11}
+Given:
+\begin{equation*}
+	\begin{split}
+		X &\sim \chi^2_n\\
+		Y &\sim \chi^2_m\\
+		Cov\left( X,Y \right) &=  0
+	\end{split}
+\end{equation*}
+To find: Distribution of $F = \frac{\frac{X}{n}}{\frac{Y}{m}}$ 
+\newline\newline
+We can transform the variables as follows:
+\begin{equation*}
+	\begin{split}
+		X &=  V\\
+		Y &=  \frac{V}{F} \frac{m}{n}
+	\end{split}
+\end{equation*}
+Since $X$ and $Y$ are independent, therefore $f_{X,Y}\left( x,y \right) $ can be found easily as follows:
+\begin{equation*}
+	\begin{split}
+		f_{X,Y}\left( x,y \right) &= \frac{1}{2^{\frac{n}{2}}\Gamma\left( \frac{n}{2} \right) } x^{\frac{n}{2}-1} e^{-\frac{x}{2}} \times \frac{1}{2^{\frac{m}{2}}\Gamma\left( \frac{m}{2} \right) } y^{\frac{m}{2}-1}e^{-\frac{y}{2}}\\
+		&= \frac{1}{2^{\frac{m+n}{2}}\Gamma\left( \frac{n}{2} \right) \Gamma\left( \frac{m}{2} \right) } x^{\frac{n}{2}-1} y^{\frac{m}{2}-1} e^{-\frac{1}{2}\left( x+y \right) }\\
+	\end{split}
+\end{equation*}
+Now, to find the Jacobian:
+\begin{equation*}
+	\begin{split}
+		J = det\left( \begin{bmatrix} -\frac{V}{F^2}\frac{m}{n} & 0\\ \frac{1}{F}\frac{m}{n} & 1 \end{bmatrix}  \right) = -\frac{V}{F^2} \frac{m}{n} 
+	\end{split}
+\end{equation*}
+Now to find $f_{F,V}\left( f,v \right) $:
+\begin{equation*}
+	\begin{split}
+		f_{F,V}\left( f,v \right) &= \frac{1}{ 2^{\frac{m+n}{2}}\Gamma\left( \frac{n}{2} \right) \Gamma\left( \frac{m}{2} \right) } v^{\frac{n}{2}-1}  \left( \frac{v}{f}\frac{m}{n} \right) ^{\frac{m}{2}-1} e^{-\frac{1}{2}\left( v + \frac{v}{f}\frac{m}{n} \right) }  \mid J \mid \\
+		&= \frac{1}{ 2^{\frac{m+n}{2}}\Gamma\left( \frac{n}{2} \right) \Gamma\left( \frac{m}{2} \right) } \left( \frac{m}{n} \right) ^{\frac{m}{2}} \frac{v^{\frac{n}{2}+\frac{m}{2}-1}}{f^{\frac{m}{2}+1}} e^{-\frac{v}{2}\left( 1+ \frac{m}{nf} \right) } 
+	\end{split}
+\end{equation*}
+Therefore, now we can find find marginal distribution of $f_F\left( f \right) $ by integrating the other part out as follows:
+\begin{equation*}
+	\begin{split}
+		f_F\left( f \right) &=  \int_{-\infty}^{\infty} f_{F,V}\left( f,v \right) dv\\
+		&= \int_0^{\infty}  \frac{1}{ 2^{\frac{m+n}{2}}\Gamma\left( \frac{n}{2} \right) \Gamma\left( \frac{m}{2} \right) } \left( \frac{m}{n} \right) ^{\frac{m}{2}} \frac{v^{\frac{n}{2}+\frac{m}{2}-1}}{f^{\frac{m}{2}+1}} e^{-\frac{v}{2}\left( 1+ \frac{m}{nf} \right) }dv\\
+		&= \frac{1}{ 2^{\frac{m+n}{2}}\Gamma\left( \frac{n}{2} \right) \Gamma\left( \frac{m}{2} \right) } \left( \frac{m}{n} \right) ^{\frac{m}{2}} \frac{1}{f^{\frac{m}{2}+1}} \int_0^{\infty} v^{\frac{n}{2}+\frac{m}{2}-1}e^{-\frac{v}{2}\left( 1+\frac{m}{nf} \right) }dv
+	\end{split}
+\end{equation*}
+Now let $\frac{v}{2}\left( 1+ \frac{m}{nf} \right) = u$. Hence we get that $dv = \frac{2}{1+\frac{m}{nf}} du$, therefore:
+\begin{equation*}
+	\begin{split}
+		f_F\left( f \right) &= \frac{1}{ 2^{\frac{m+n}{2}}\Gamma\left( \frac{n}{2} \right) \Gamma\left( \frac{m}{2} \right) } \left( \frac{m}{n} \right) ^{\frac{m}{2}} \frac{1}{f^{\frac{m}{2}+1}} \int_0^{\infty} \left( \frac{2u}{1+\frac{m}{nf}} \right) ^{\frac{n}{2}+\frac{m}{2}-1} e^{-u} \frac{2du}{1+\frac{m}{nf}}\\
+		&= \frac{1}{ 2^{\frac{m+n}{2}}\Gamma\left( \frac{n}{2} \right) \Gamma\left( \frac{m}{2} \right) } \left( \frac{m}{n} \right) ^{\frac{m}{2}} \frac{1}{f^{\frac{m}{2}+1}} \left( \frac{2}{1+\frac{m}{nf}} \right) ^{\frac{n}{2}+\frac{m}{2}} \int_0^{\infty} u^{\frac{n}{2}+\frac{m}{2}-1}e^{-u}du\\
+		&= \left( \frac{m}{n} \right) ^{\frac{m}{2}} \frac{\Gamma\left( \frac{m}{2}+\frac{n}{2} \right) }{\Gamma\left( \frac{m}{2} \right) \Gamma\left( \frac{n}{2} \right) } f^{-1-\frac{m}{2}} \left( 1+\frac{m}{nf} \right) ^{-\frac{n}{2}-\frac{m}{2}}\\
+		&= \frac{1}{B\left( \frac{m}{2},\frac{n}{2} \right) } \left( \frac{n}{m} \right) ^{\frac{n}{2}} f^{\frac{n}{2}-1} \left( 1+\frac{nf}{m} \right) ^{-\frac{m+n}{2}}
+	\end{split}
+\end{equation*}
+if $f>0$, otherwise  $f_F\left( f \right) = 0$.
+\end{document}
+

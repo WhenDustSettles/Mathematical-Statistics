@@ -1,0 +1,84 @@
+%        File: PowerTestFunctions.tex
+%     Created: Wed May 13 06:00 PM 2020 I
+% Last Change: Wed May 13 06:00 PM 2020 I
+%
+\documentclass[a4paper]{article}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\title{Power and Test Functions}
+\author{Animesh Renanse}
+\date{May 13, 2020}
+
+\begin{document}
+\maketitle
+\newpage
+
+\section{Power Function}
+
+\textbf{Def:} \textit{The Power Function of a Critical Region $R$, denoted by $\beta : \Theta_1 \cup \Theta_0 \to [0,1]$, is the \textbf{probability of rejecting the Null Hypothesis $H_0$ when $\theta$ is the true value of the parameter}, i.e.,}
+\[
+	\beta\left( \theta \right) = P_\theta\left[ \mathbf{X}\in R \right] 
+.\]
+\textit{Note that $\theta$ is the value of $\theta$, that WE think is the truth, therefore $\theta$ can be anywhere in  $\Theta_0 \cup \Theta_1$. \textbf{It is not the absolute true value of $\theta$}, because what's the point of testing hypothesis if we already know the absolute truth! These are just used to test what type of error probabilities does a particular setting of true $\theta$ gives. }
+\newline\newline
+\textbf{Remark:} For $\theta \in \Theta_0$, $\beta\left( . \right) $ is the probability of Type-I Error, as if the true value of $\theta$ is in $\Theta_0$, then that means that true value of $\theta$ is in the parameter space of Null Hypothesis $H_0$. Thus, definition of power function then becomes, \textit{probability of rejecting $H_0$ when $H_0$ is actually the truth (as true $\theta$ is in $\Theta_0$)}, which is nothing but probability of Type-I Error.
+\newline\newline
+\textbf{Remark:} For $\theta \in \Theta_1$, $\beta\left( . \right) $ is the 1 - probability of Type-II Error, because if $\theta \in \Theta_1$, that means that true value of $\theta$ is not in parameter space of $H_0$. Thus, $H_0$ is false, hence the definition of power function becomes \textit{probability of rejecting $H_0$ when $H_0$ is not the truth.} Which is just the \textit{1 - probability of accepting  $H_0$ when $H_0$ is not true.} Which is just the 1 - Type-II Error.
+
+
+\section{Size and Level}
+\textbf{Def:} Let $\alpha \in \left( 0,1 \right) $ be a fixed Real number. A test for $H_0:\theta \in \Theta_0$ against $H_1:\theta\in\Theta_1$ with power function $\beta\left( . \right) $ is \textit{called a \textbf{size $\alpha$ test } if }.
+\[
+sup_{\theta \in \Theta} \beta\left( \theta \right)  = \alpha
+.\] 
+\newline
+\textbf{Def:} A \textbf{test is called level $\alpha$} if $\beta\left( \theta \right) \le \alpha$ for all $\theta \in \Theta$.
+\newline\newline
+\textbf{Remark:} Size of a test can be considered the worst possible probability of Type-I Error.
+\newline\newline
+\textbf{Remark:} If a given test is of size $\alpha$, THEN it is of level $\alpha$.
+\section{Test Function}
+\textbf{Def:} A function $\varphi : \mathbb{R}^{n} \to [0,1] $ is called a \textit{Test Function or Critical Function}, where $\varphi\left( \mathbf{x} \right) $ stands for the \textit{\textbf{probability of rejecting $H_0$ when $\mathbf{X} = \mathbf{x}$ is observed}}.
+\newline\newline
+\textbf{Def:} The power function of a test function is defined by,
+$$\beta\left(\theta \right)  = \mathbb{E}_\theta \left( \varphi \left( \mathbf{x} \right)  \right) \forall \theta \in \Theta_0 \cup \Theta_1 $$
+\textbf{Example:} Consider two critical regions for a given problem to be $R_1 = \left\{ \mathbf{x} \in\mathbb{R}^{9}:\overline{x}>6 \right\}$ and $\left\{ \mathbf{x} \in \mathbb{R}^{9} : \overline{x} > 7 \right\}$.
+\newline\newline
+Then, the \textit{two critical regions $R_1$ and $R_2$ can be represented as the following two test functions:
+}
+\[
+	\varphi_1\left( \overline{x} \right)  = \begin{cases}
+		1 & \text{if} \overline{x} > 6\\
+		0 & \text{if} \overline{x} \le  6
+	\end{cases} \text{ and } \varphi_2\left( \overline{x} \right) = \begin{cases}
+		1 & \text{if} \overline{x} > 7\\
+		0 & \text{if}\overline{x} \le 7
+	\end{cases}
+.\]
+\textbf{Note:} This example shows that \textit{test function is an alternative way of writing critical region.}
+But of what gain is it to us? Well note that critical region only defines those points where we will reject the hypothesis, that is, it only tells us whether we should reject the hypothesis with probability 1 or with probability 0 (that is, we accept the hypothesis). But in this scenario with \textit{test functions, we have a range of continuous probabilities between 0 and 1 where we can showcase the confidence by which we reject the hypothesis at the point at  which test function is calculated at.}
+
+
+
+\
+
+\section{Randomized Test}
+\textbf{Def:} A test is called randomized test if $\varphi \left( \mathbf{x} \right) \in \left( 0,1 \right)$ for some $\mathbf{x}$.
+\newline
+Otherwise it's called a non-randomized test.
+\newline\newline
+\textit{Note that the range of $\varphi\left( \mathbf{x}\right) $ is $\left( 0,1 \right) $, not $\left[ 0,1 \right] $}
+\newline\newline
+\textbf{Remark:} Any test given by a critical region is a \textit{non-randomized} test as the test function in that case is the indicator function of whether a sample is in critical region or not.
+\newline\newline
+\textbf{Remark:} Even still, the problem of whether we should accept the hypothesis $H_0$ or not is not solved.
+Consider a fixed $\mathbf{x}_0$ such that $\varphi\left( \mathbf{x}_0 \right) = 0.6$. If $\mathbf{X} = \mathbf{x}_0$ is observed, \textbf{\textit{how should we accept or reject $H_0$?}}. Well, \textit{we can perform a Random Experiment to decide it!}. One can toss a biased coin with probability of heads being 0.4 and probability of tails being 0.6. If tails is the outcome, then happily reject $H_0$ otherwise accept it.
+\newline\newline
+\textbf{Remember!} The Power function of a randomized test function is defined as $\mathbb{E}_\theta \left( \varphi\left( \mathbf{X} \right)  \right) $, or one can say that it is the \textit{size of randomized test under $\theta$}.
+\newline\newline
+\textit{Test functions are more general in the sense that all critical regions can be represented as a test function, whereas the converse is not true.
+}
+\end{document}
+
+

@@ -1,0 +1,111 @@
+%        File: Asymptotic_CI.tex
+%     Created: Mon May 11 04:00 PM 2020 I
+% Last Change: Mon May 11 04:00 PM 2020 I
+%
+\documentclass[a4paper]{article}
+
+\usepackage{amsfonts}
+\title{Asymptotic Confidence Interval}
+\date{2013-09-01}
+\author{Animesh Renanse}
+
+\begin{document}
+
+\maketitle
+\newpage
+
+\section{Asymptotic CI}
+
+\begin{itemize}
+	\item{A lot of times it becomes intractable to find pivot to construct a confidence interval for a small sample.}
+	\item{But we can overcome this problem by having a larger sample six}
+	\item{This is called Asymptotic CI, ie when someone has high amount of samples, it becomes possible to get a confidence interval}
+	\item{To get that, we need to use convergence in distribution(for CLT) and in probability (for consistent estimator)}
+
+\end{itemize}
+
+\section{Distribution Free Population Mean}
+
+\subsection{When $\sigma$ is known}
+
+\begin{itemize}
+	\item{Given that $X_1, X_2, \cdots X_N$ are i.i.d. Random variables, with finite $\mu$ and $\sigma^2$. Then using CLIT: \[
+				\frac{\sqrt{n} \left( \overline{X_n}	- \mu \right) }{\sigma} \sim Z \sim N(0,1) 	
+	.\] 
+
+}
+
+	\item{Now, if sample size is large, then we can approximate the distribution of $\frac{\sqrt{n} \left( \overline{X_n}	- \mu \right) }{\sigma}$  by a $N(0,1)$, therefore, we can write:
+		\[
+			P\left( -z_{\frac{\alpha}{2}} \le	\frac{\sqrt{n} \left( \overline{X_n}	- \mu \right) }{\sigma} \le z_\frac{\alpha}{2}  \right) \approx 1 - \alpha
+		.\] }
+
+
+	\item{Now, if I know $\sigma$ and also that n is very large, then I ca find the asymptotic CI using the above equation as follows:
+		\[
+			\left[ \overline{ X_n} - \frac{\sigma}{\sqrt{n} }z_\frac{\alpha}{2}, \overline{X_n} + \frac{\sigma}{\sqrt{n} }z_\frac{\alpha}{2}   \right] 
+		.\] }
+\end{itemize}
+
+\subsection{When $\sigma$ is unknown}
+
+\begin{itemize}
+	\item{Since we know that $S_n \to^{P} \sigma $ (Q.No. 6, Problem set 7), therefore, we can write: 
+		\[
+			\frac{\sqrt{n} \left( \overline{X_n}-\mu \right) }{S_n} \to N(0,1)
+		.\] 	
+		}
+
+	\item{Therefore $P\left( -z_\frac{\alpha}{2} \le  \frac{\sqrt{n} \left(  \overline{X_n} - \mu  \right) }{S_n}   \le z_\frac{\alpha}{2} \right)   \approx 1- \alpha $	}
+
+	\item{Now, we can easily use this as pivot, and therefore the \textit{Asymptotic CI} for $\mu$ becomes:
+		\[
+			\left[  \overline{X_n} - \frac{S_n}{\sqrt{n} }, \overline{X_n} + \frac{S_n}{\sqrt{n} }  \right] 
+		.\] }
+\end{itemize}
+
+\textbf{Note that this method works for any distribution of $X_1, X_2, \ldots X_n$ as we had to use CLT, which is of course Distribution Independent, therefore this is why we call it Distribution Free}
+
+\section{Using Maximum Likelihood Estimators}
+\begin{itemize}
+	\item {Let $\hat{\theta_n}$ be a Consistent Estimator of $\theta$ \textbf{and} $\sqrt{n}\left( \hat{\theta_n}-\theta \right)  \to^\mathbb{D} N(0,b^{2}(\theta)) $, where $b^2(\theta) > 0$ for all $\theta \in \Theta$ and also that $b(\theta)$ is \textit{Continuous} }
+
+	\item{Since $b(\theta)$ is continuous therefore, by the \textit{Theorems of Convergence}, it becomes true that $\frac{b(\hat{\theta_n})}{b(\theta)} \to^{\mathbb{P} } 1 $ and hence:
+		\[
+			\frac{\sqrt{n} \left( \hat{\theta_n }- \theta \right) }{b(\hat{\theta_n})} \to N(0,1)		
+		.\] }
+	\item{Since we know that $n$ is high, therefore, we can use above equation as the pivot to get the following value of $100\left( 1-\alpha \right) \%$ Confidence interval (Note that since the pivot distribution here is the $N(0,1)$, therefore, $z_\frac{\alpha}{2}$ is used.):
+			\[
+				\left[ \hat{\theta_n} - \frac{b(\hat{\theta_n})}{\sqrt{n} }z_\frac{\alpha}{2}, \hat{\theta_n} + \frac{b(\hat{\theta_n})}{\sqrt{n} }z_\frac{\alpha}{2} \right] 
+			.\] 
+		}
+
+\end{itemize}
+
+\section{Example}	
+\textbf{Question: $X_1, X_2,\cdots X_n \sim^{i.i.d.}$ \textit{Bernoulli}(p), where $p \in (0,1)$. Construct an Asymptotic Confidence Interval for  $p$.	}
+
+Now, Since we are tasked to find Asymptotic CI, this means that $n$ is high, therefore, we have,
+\[
+	\hat{p} = \overline{X_n} \to^{\mathbb{P}}  p
+.\] 
+We also know that by \textit{$3^{rd}$ Theorem of Statistics}:
+\[
+	\overline{X_n}\to^{\mathbb{D}} N(\mu, \frac{\sigma^2}{n}) 
+.\] 	
+Where, $\mu = p$ and  $\sigma^2 = p\left( 1-p \right) $, remember we are dealing with Bernoulli Distribution.
+
+Equivalently, we can write equation above as:
+\[
+	\frac{\sqrt{n} \left( \hat{X_n} - p  \right) }{\sqrt{p\left( 1-p \right) } } \to N(0,1)
+.\] 	
+
+Now, from previous section we can notice that $b(p) = \sqrt{p\left( 1-p \right) } $,therefore, the Asymptotic CI will be:
+\[
+	\left[ \overline{X_n} - \frac{\sqrt{\overline{X_n}\left( 1-\overline{X_n} \right) } }{\sqrt{n} }z_\frac{\alpha}{2}, \overline{X_n} + \frac{\sqrt{\overline{X_n}\left( 1 - \overline{X_n} \right) } }{\sqrt{n} }z_\frac{\alpha}{2} \right] 
+.\] 
+
+\end{document}
+
+
+
